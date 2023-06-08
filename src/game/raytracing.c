@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/08 16:08:13 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/08 20:11:41 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,36 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-int map_ig[24][24] =
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-};
+// char *map_ig[] =
+// {
+//   "111111111111111111111111",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "100000222220000303030001",
+//   "100000200020000000000001",
+//   "100000200020000300030001",
+//   "100000200020000000000001",
+//   "100000220220000303030001",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "100000000000000000000001111111111111111111111111",
+//   "100000000000000000000000000000000000000000000001",
+//   "100000000000000000000001111111111111111111111111",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "100000000000000000000001",
+//   "144444444000000000000001",
+//   "140400004000000000000001",
+//   "140000504000000000000001",
+//   "140400004000000000000001",
+//   "140444444000000000000001",
+//   "140000000000000000000001",
+//   "144444444000000000000001",
+//   "111111111111111111111111",
+// };
+
 
 double v_abs(double value)
 {
@@ -81,7 +84,7 @@ int	color_select(int tale)
 	return ((start.tv_sec * 1000) + (start.tv_usec / 1000));
 }
 
-void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x, double dir_y, double plane_x, double plane_y)
+void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x, double dir_y, double plane_x, double plane_y, char **map_ig)
 {
 
 	printf("LA BOUCLE \n");
@@ -159,7 +162,7 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
         		}
 
         //Check if ray has hit a wall
-        		if (map_ig[map_x][map_y] > 0)
+        		if (map_ig[map_x][map_y] > '0')
 					hit = 1;
       		}
 
@@ -203,6 +206,7 @@ int exit_game(void)
 int key_press_hook(int keycode, void *params)
 {
 	t_game *game = (t_game *)params;
+	char **map_ig = game->map_ig;
 	// game->nmig.start = time_calculator();
 
 	game->numig.old_time = game->numig.time;
@@ -235,9 +239,9 @@ int key_press_hook(int keycode, void *params)
     if (keycode == 13)
     {
 		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == 0)
+     	if(map_ig[(int)(game->numig.pos_x + game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
 			game->numig.pos_x += game->numig.dir_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.dir_y * game->numig.move_speed)] == 0)
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.dir_y * game->numig.move_speed)] =='0')
 			game->numig.pos_y += game->numig.dir_y * game->numig.move_speed;
    	}
 
@@ -247,27 +251,27 @@ int key_press_hook(int keycode, void *params)
     if (keycode == 1)
     {
 		printf("Pressed S\n");
-      	if(map_ig[(int)(game->numig.pos_x - game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == 0)
+      	if(map_ig[(int)(game->numig.pos_x - game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
 			game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y - game->numig.dir_y * game->numig.move_speed)] == 0)
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y - game->numig.dir_y * game->numig.move_speed)] == '0')
 			game->numig.pos_y -= game->numig.dir_y * game->numig.move_speed;
 	}
 
 	if (keycode == 2)
     {
 		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == 0)
+     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
 			game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == 0)
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
 			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
    	}
 
 	if (keycode == 0)
     {
 		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == 0)
+     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
 			game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == 0)
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
 			game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
    	}
 
@@ -299,7 +303,7 @@ int key_press_hook(int keycode, void *params)
   	mlx_clear_window(game->mlx, game->window); // cls();
 	game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
 	game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig.bits_per_pixel, &game->imgig.line_length, &game->imgig.endian);
-	game_loop(*game, game->imgig, game->numig.pos_x, game->numig.pos_y, game->numig.dir_x, game->numig.dir_y, game->numig.plane_x, game->numig.plane_y);
+	game_loop(*game, game->imgig, game->numig.pos_x, game->numig.pos_y, game->numig.dir_x, game->numig.dir_y, game->numig.plane_x, game->numig.plane_y, game->map_ig);
 	mlx_put_image_to_window(game->mlx, game->window, game->imgig.img, 0, 0); // redraw();
 	return 0;
 }
@@ -320,7 +324,12 @@ int main (int argc, char **argv)
 	}
 	parser(&parse, cub_file, argv[1]);
 
+	char **map = parse->map;
+	while (*map)
+		puts(*(map++));
 
+	
+	exit(0);
 
 
 
@@ -332,6 +341,7 @@ int main (int argc, char **argv)
 	t_game	game;
 
 	ft_memset(&game, 0, sizeof(t_game));
+	game.map_ig = parse->map;
 
 	game.numig.pos_x = 14, game.numig.pos_y = 14;  //x and y start position
 	game.numig.dir_x = -1, game.numig.dir_y = 0; //initial direction vector
@@ -347,7 +357,7 @@ int main (int argc, char **argv)
 	game.imgig.img = mlx_new_image(game.mlx, 1024, 720);
 	game.imgig.addr = mlx_get_data_addr(game.imgig.img, &game.imgig.bits_per_pixel, &game.imgig.line_length, &game.imgig.endian);
 
-	game_loop(game, game.imgig, game.numig.pos_x, game.numig.pos_y, game.numig.dir_x, game.numig.dir_y, game.numig.plane_x, game.numig.plane_y);
+	game_loop(game, game.imgig, game.numig.pos_x, game.numig.pos_y, game.numig.dir_x, game.numig.dir_y, game.numig.plane_x, game.numig.plane_y, game.map_ig);
 
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0); // redraw();
 	mlx_hook(game.window, 17, (1L << 17), exit_game, &game);

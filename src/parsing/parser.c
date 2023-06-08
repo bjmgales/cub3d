@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:20:59 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:53:37 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/08 20:08:30 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parser(t_parse **parse, char **cub_file, char *map_path)
 	get_xy(parse);
 	(*parse)->ressources = get_ressources(cub_file, parse);
 	free_char_array(cub_file);
-	ressource_parse(parse);
+	// ressource_parse(parse);
 	map_parser((*parse)->map, parse);
 	player_parser((*parse)->map, parse);
 }
