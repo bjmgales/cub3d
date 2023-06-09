@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/09 12:09:35 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:10:16 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,26 +237,27 @@ int key_press_hook(int keycode, void *params)
 		exit_game();
 
 	//should move up
-	if (keycode == 13 || keycode == 126)
-    {
-		//exit(0);
-     	if(map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)] == '0')
-			game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
-      	if(map_ig[(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
-			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
-   	}
-	//should move down
-	if (keycode == 1 || keycode == 125)
-    {
-		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
-			game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
-		if(map_ig[(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
-			game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
-   	}
+if (keycode == 13 || keycode == 126)
+{
+    if (map_ig[(int)(game->numig.pos_y + game->numig.dir_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
+        game->numig.pos_y += game->numig.dir_y * game->numig.move_speed;
+    if (map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x + game->numig.dir_x * game->numig.move_speed)] == '0')
+        game->numig.pos_x += game->numig.dir_x * game->numig.move_speed;
+}
+
+// should move down
+if (keycode == 1 || keycode == 125)
+{
+    if (map_ig[(int)(game->numig.pos_y - game->numig.dir_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
+        game->numig.pos_y -= game->numig.dir_y * game->numig.move_speed;
+    if (map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x - game->numig.dir_x * game->numig.move_speed)] == '0')
+        game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
+}
+
+
 
     //rotate to the right
-    if (keycode == 124 || keycode == 2)
+   if (keycode == 124 || keycode == 2)
     {
 		printf("Pressed A\n");
       //both camera direction and camera plane must be rotated
