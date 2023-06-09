@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/09 09:47:38 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:10:13 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ double delta_dist_init(double d, double r)
 int	color_select(int tale)
 {
 	int new_color;
+	printf("lol\n");
 	if (tale == 1)
 		return new_color = create_trgb(0, 255, 0, 0); //red
 	if (tale == 2)
@@ -183,11 +184,11 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
     		if (draw_end >= h)
 				draw_end = h - 1;
 
-				printf("x = %d, y = %d, hit = %d\n", map_x, map_y, hit);
      	 //choose wall color
 			int color;
-			printf("%d %d\n", map_x, map_y);
-			color = color_select(map_ig[map_x][map_y]);
+			printf("x = %d, y = %d, hit = %d\n", map_x, map_y, hit);
+			printf("just before color select %d %d\n", map_x, map_y);
+			color = color_select(map_ig[map_y][map_x]);
 
       //give x and y sides different brightness
 		    if (side == 1)
