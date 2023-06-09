@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/09 10:10:13 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:24:31 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ double delta_dist_init(double d, double r)
 int	color_select(int tale)
 {
 	int new_color;
-	printf("lol\n");
 	if (tale == 1)
 		return new_color = create_trgb(0, 255, 0, 0); //red
 	if (tale == 2)
@@ -186,8 +185,6 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 
      	 //choose wall color
 			int color;
-			printf("x = %d, y = %d, hit = %d\n", map_x, map_y, hit);
-			printf("just before color select %d %d\n", map_x, map_y);
 			color = color_select(map_ig[map_y][map_x]);
 
       //give x and y sides different brightness
@@ -236,7 +233,7 @@ int key_press_hook(int keycode, void *params)
 	// printf ("dir_x %f\n", game->numig.dir_x);
 	// printf ("MS %f\n", game->numig.move_speed);
 	// printf ("pos_y %f\n", game->numig.pos_y);
-
+	printf("keycode = %d\n", keycode);
 	if (keycode == 53)
 		exit_game();
     if (keycode == 13)
@@ -260,26 +257,26 @@ int key_press_hook(int keycode, void *params)
 			game->numig.pos_y -= game->numig.dir_y * game->numig.move_speed;
 	}
 
-	if (keycode == 2)
-    {
-		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-			game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
-			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
-   	}
+	// if (keycode == 2)
+    // {
+	// 	//exit(0);
+    //  	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
+	// 		game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
+    //   	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
+	// 		game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
+   	// }
 
-	if (keycode == 0)
-    {
-		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-			game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
-			game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
-   	}
+	// if (keycode == 0)
+    // {
+	// 	//exit(0);
+    //  	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
+	// 		game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
+    //   	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
+	// 		game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
+   	// }
 
     //rotate to the right
-    if (keycode == 124)
+    if (keycode == 124 || keycode == 2)
     {
 		printf("Pressed A\n");
       //both camera direction and camera plane must be rotated
@@ -292,7 +289,7 @@ int key_press_hook(int keycode, void *params)
 
    	}
     //rotate to the left
-    if (keycode == 123)
+    if (keycode == 123 || keycode == 0)
     {
 		printf("Pressed D\n");
       //both camera direction and camera plane must be rotated
