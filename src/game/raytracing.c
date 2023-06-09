@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/09 10:24:31 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:28:35 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,44 +236,25 @@ int key_press_hook(int keycode, void *params)
 	printf("keycode = %d\n", keycode);
 	if (keycode == 53)
 		exit_game();
-    if (keycode == 13)
+
+	//should move up
+	if (keycode == 13 || keycode == 126)
     {
 		//exit(0);
-     	if(map_ig[(int)(game->numig.pos_x + game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-			game->numig.pos_x += game->numig.dir_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.dir_y * game->numig.move_speed)] =='0')
-			game->numig.pos_y += game->numig.dir_y * game->numig.move_speed;
+     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
+			game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
+			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
    	}
-
-	// noalexan
-
-    //move backwards if no wall behind you
-    if (keycode == 1)
+	//should move down
+	if (keycode == 1 || keycode == 125)
     {
-		printf("Pressed S\n");
-      	if(map_ig[(int)(game->numig.pos_x - game->numig.dir_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-			game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
-      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y - game->numig.dir_y * game->numig.move_speed)] == '0')
-			game->numig.pos_y -= game->numig.dir_y * game->numig.move_speed;
-	}
-
-	// if (keycode == 2)
-    // {
-	// 	//exit(0);
-    //  	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-	// 		game->numig.pos_x += game->numig.plane_x * game->numig.move_speed;
-    //   	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
-	// 		game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
-   	// }
-
-	// if (keycode == 0)
-    // {
-	// 	//exit(0);
-    //  	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
-	// 		game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
-    //   	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
-	// 		game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
-   	// }
+		//exit(0);
+     	if(map_ig[(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)][(int)game->numig.pos_y] == '0')
+			game->numig.pos_x -= game->numig.plane_x * game->numig.move_speed;
+      	if(map_ig[(int)game->numig.pos_x][(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)] == '0')
+			game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
+   	}
 
     //rotate to the right
     if (keycode == 124 || keycode == 2)
