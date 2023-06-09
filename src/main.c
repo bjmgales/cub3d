@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:15:15 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/09 09:54:10 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 12:00:01 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int main (int argc, char **argv)
 	ft_memset(&game, 0, sizeof(t_game));
 	// game.map_ig = parse->map;
 
-	game.numig.pos_x = parse->player_x, game.numig.pos_y = parse->player_y;//x and y start position
+	game.numig.pos_x = parse->player_x;
+	game.numig.pos_y = parse->player_y;//x and y start position
+	game.map_ig = parse->map;
+	game.map_ig[parse->player_y][parse->player_x] = '0';
 	game.numig.dir_x = -1, game.numig.dir_y = 0; //initial direction vector
 	game.numig.plane_x = 0, game.numig.plane_y = 0.66; //the 2d raycaster version of camera plane
 	game.numig.time = 0; //time of current frame
@@ -57,11 +60,6 @@ int main (int argc, char **argv)
 	game.window = mlx_new_window(game.mlx, 1024, 720, "cub3D");
 	game.imgig.img = mlx_new_image(game.mlx, 1024, 720);
 	game.imgig.addr = mlx_get_data_addr(game.imgig.img, &game.imgig.bits_per_pixel, &game.imgig.line_length, &game.imgig.endian);
-		// char **map = parse->map;
-	game.map_ig = malloc(sizeof(char *) * parse->map_height + 1);
-	for (int i = 0; parse->map[i]; i++)
-		game.map_ig[i] = ft_strdup(parse->map[i]);
-
 	game_loop(game, game.imgig, game.numig.pos_x, game.numig.pos_y, game.numig.dir_x, game.numig.dir_y, game.numig.plane_x, game.numig.plane_y, game.map_ig);
 
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0); // redraw();
