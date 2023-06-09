@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:32:44 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:53:58 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 09:20:58 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parse_north_south(char *str, t_parse **parse)
 	char	*tmp;
 
 	i = 1;
+	fd = 0;
 	if (str[i++] != 'O')
 		print_free_exit("Error\nWrong texture format.\n", parse);
 	i += iter_whitespace(&str[i]);
@@ -47,6 +48,7 @@ void	parse_east(char *str, t_parse **parse)
 	char	*tmp;
 
 	i = 1;
+	fd = 0;
 	if (str[i++] != 'A')
 		print_free_exit("Error\nWrong texture format.\n", parse);
 	i += iter_whitespace(&str[i]);
@@ -74,6 +76,7 @@ void	parse_west(char *str, t_parse **parse)
 	char	*tmp;
 
 	i = 1;
+	fd = 0;
 	if (str[i++] != 'E')
 		print_free_exit("Error\nWrong texture format.\n", parse);
 	i += iter_whitespace(&str[i]);

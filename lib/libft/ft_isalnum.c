@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 13:12:44 by ctardy            #+#    #+#             */
-/*   Updated: 2021/10/28 15:32:16 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/08 22:13:48 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static int	ft_isalpha2(int c)
 
 static int	ft_isdigit2(int c)
 {
-	int	i;
-
-	i = 0;
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
@@ -38,7 +35,7 @@ int	ft_isalnum(int c)
 /*
 #include <stdio.h>
 #include <ctype.h>
-int main() 
+int main()
 {
 	int c2 = 'B';
 	int c = ' ';

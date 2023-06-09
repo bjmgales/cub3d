@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 20:05:15 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/09 09:39:32 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_parse
 	char		**ressources;
 	int			map_width;
 	int			map_height;
+	int			player_x;
+	int			player_y;
 	int			c_rgb[3];
 	int			f_rgb[3];
 	char		*ceiling;

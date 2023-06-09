@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:09:56 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:53:44 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 09:39:46 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	player_parser(char **map, t_parse **parse)
 	{
 		while (map[i][++j])
 			if (in_set("NEWS", map[i][j]) && player_count++ != -1)
+			{
 				is_surrounded(map, i, j, parse);
+				(*parse)->player_x = j;
+				(*parse)->player_y = i;
+			}
 		j = 0;
 	}
 	if (player_count != 1)
