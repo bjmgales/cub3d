@@ -6,13 +6,39 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:15:15 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/09 12:00:01 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/09 18:12:31 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3d.h"
 
+void	initial_camera_dir(double *dir_x, double *dir_y, double *plane_x, double *plane_y, char orientation)
+{
+	printf("%c\n", orientation);
+	if (orientation == 'W')
+	{
+		*dir_x = -1, *dir_y = 0; //initial direction vector
+		*plane_x = 0, *plane_y = 0.66;
+	}
+	if (orientation == 'N')
+	{
+		*dir_x = 0, *dir_y = -1; // Initial direction vector
+		*plane_x = -0.66, *plane_y = 0; // Camera plane
+
+	}
+	if (orientation == 'E')
+	{
+		*dir_x = 1, *dir_y = 0; // Initial direction vector
+		*plane_x = 0, *plane_y = -0.66; // Camera plane
+	}
+	if (orientation == 'S')
+	{
+		*dir_x = 0, *dir_y = 1; // Initial direction vector
+		*plane_x = 0.66, *plane_y = 0; // Camera plane
+
+	}
+}
 int main (int argc, char **argv)
 {
 
@@ -47,9 +73,12 @@ int main (int argc, char **argv)
 	game.numig.pos_x = parse->player_x;
 	game.numig.pos_y = parse->player_y;//x and y start position
 	game.map_ig = parse->map;
-	game.map_ig[parse->player_y][parse->player_x] = '0';
 	game.numig.dir_x = -1, game.numig.dir_y = 0; //initial direction vector
 	game.numig.plane_x = 0, game.numig.plane_y = 0.66; //the 2d raycaster version of camera plane
+	printf("%f\n", game.numig.dir_x);
+	initial_camera_dir(&game.numig.dir_x, &game.numig.dir_y, &game.numig.plane_x, &game.numig.plane_y, game.map_ig[parse->player_y][parse->player_x]);
+	game.map_ig[parse->player_y][parse->player_x] = '0';
+	printf("%f\n", game.numig.dir_x);
 	game.numig.time = 0; //time of current frame
 	game.numig.start = time_calculator(); //time of current frame
 	game.numig.old_time = 0; //time of previous frame
