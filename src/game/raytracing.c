@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/09 18:37:08 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/10 14:49:39 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
     	{
 			//calculate ray position and direction
 			double camera_x = 2 * x / (double)w - 1; //x-coordinate in camera space
-			double ray_dir_x = dir_x + plane_x * camera_x;
-			double ray_dir_y = dir_y + plane_y * camera_x;
+			double ray_dir_x = dir_x - plane_x * camera_x;
+			double ray_dir_y = dir_y - plane_y * camera_x;
       //which box of the map we're in
    			int map_x = (int)pos_x;
     		int map_y = (int)pos_y;
 
       //length of ray from current position to next x or y-side
-    		double side_dist_x;
-    		double side_dist_y;
+    		double side_dist_x=0.0;
+    		double side_dist_y = 0.0;
 
        //length of ray from one x or y-side to next x or y-side
 		// TRY LATER WITH MATH.H INFINITY
@@ -116,28 +116,28 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 			double perp_wall_dist;
 
       //what direction to step in x or y-direction (either +1 or -1)
-		    int step_x;
-    		int step_y;
+		    int step_x = 0.0;
+    		int step_y=0.0;
 
 		    int hit = 0; //was there a wall hit?
     		int side; //was a NS or a EW wall hit?
 
       //calculate step and initial sideDist
-		    if (ray_dir_x < 0)
+			if (ray_dir_x < 0)
 			{
 				step_x = -1;
 				side_dist_x = (pos_x - map_x) * delta_dist_x;
-			}
+      		}
 			else
 			{
 				step_x = 1;
 				side_dist_x = (map_x + 1.0 - pos_x) * delta_dist_x;
 			}
-			if (ray_dir_y < 0)
+		    if (ray_dir_y < 0)
 			{
 				step_y = -1;
 				side_dist_y = (pos_y - map_y) * delta_dist_y;
-      		}
+			}
 			else
 			{
 				step_y = 1;
@@ -148,16 +148,16 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 			while (hit == 0)
       		{
         	//jump to next map square, either in x-direction, or in y-direction
-        		if (side_dist_x < side_dist_y)
+        		if (side_dist_y < side_dist_x)
         		{
-          			side_dist_x += delta_dist_x;
-          			map_x += step_x;
+          			side_dist_y += delta_dist_y;
+          			map_y += step_y;
           			side = 0;
        			}
         		else
         		{
-          			side_dist_y += delta_dist_y;
-          			map_y += step_y;
+          			side_dist_x += delta_dist_x;
+          			map_x += step_x;
           			side = 1;
         		}
         //Check if ray has hit a wall
@@ -168,9 +168,9 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 
       //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
       		if (side == 0)
-				perp_wall_dist = (side_dist_x - delta_dist_x);
-      		else
 				perp_wall_dist = (side_dist_y - delta_dist_y);
+      		else
+				perp_wall_dist = (side_dist_x - delta_dist_x);
 
       //Calculate height of line to draw on screen
     		int line_height = (int)(h / perp_wall_dist);
@@ -253,8 +253,8 @@ if (keycode == 1 || keycode == 125)
     if (map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x - game->numig.dir_x * game->numig.move_speed)] == '0')
         game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
 }
-	//move right
-	if (keycode == 2)
+	//move left
+	if (keycode == 0)
     {
 		//exit(0);
      	if(map_ig[(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -262,8 +262,8 @@ if (keycode == 1 || keycode == 125)
       	if(map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)] == '0')
 			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
    	}
-	//move left
-	if (keycode == 0)
+	//move right
+	if (keycode == 2)
     {
 		//exit(0);
      	if(map_ig[(int)(game->numig.pos_y + game->numig.plane_y * game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -271,7 +271,9 @@ if (keycode == 1 || keycode == 125)
       	if(map_ig[(int)game->numig.pos_y][(int)(game->numig.pos_x + game->numig.plane_x * game->numig.move_speed)] == '0')
 			game->numig.pos_y -= game->numig.plane_y * game->numig.move_speed;
    	}
-   if (keycode == 124)
+
+	//rotate left
+   if (keycode == 123)
     {
 		printf("Pressed A\n");
       //both camera direction and camera plane must be rotated
@@ -283,8 +285,8 @@ if (keycode == 1 || keycode == 125)
       	game->numig.plane_y = oldPlane_x * sin(-game->numig.rot_speed) + game->numig.plane_y * cos(-game->numig.rot_speed);
 
    	}
-    //rotate to the left
-    if (keycode == 123)
+    //rotate to the right
+    if (keycode == 124)
     {
 		printf("Pressed D\n");
       //both camera direction and camera plane must be rotated
