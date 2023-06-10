@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:15:15 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/09 18:12:31 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/10 14:47:35 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,11 @@ int main (int argc, char **argv)
 	ft_memset(&game, 0, sizeof(t_game));
 	// game.map_ig = parse->map;
 
-	game.numig.pos_x = parse->player_x;
-	game.numig.pos_y = parse->player_y;//x and y start position
+	game.numig.pos_x = parse->player_x + 0.5; // +0.5 pour qu'il soit bien aligné avec le centre des murs
+	game.numig.pos_y = parse->player_y + 0.5;//x and y start position
 	game.map_ig = parse->map;
-	game.numig.dir_x = -1, game.numig.dir_y = 0; //initial direction vector
-	game.numig.plane_x = 0, game.numig.plane_y = 0.66; //the 2d raycaster version of camera plane
-	printf("%f\n", game.numig.dir_x);
 	initial_camera_dir(&game.numig.dir_x, &game.numig.dir_y, &game.numig.plane_x, &game.numig.plane_y, game.map_ig[parse->player_y][parse->player_x]);
 	game.map_ig[parse->player_y][parse->player_x] = '0';
-	printf("%f\n", game.numig.dir_x);
 	game.numig.time = 0; //time of current frame
 	game.numig.start = time_calculator(); //time of current frame
 	game.numig.old_time = 0; //time of previous frame
