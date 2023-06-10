@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:32:00 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:53:30 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:36:14 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	is_surrounded(char **map, int line, int index, t_parse **parse)
 {
-	if (ft_strlen(map[line - 1]) < index)
+	if (line == 0 || ft_strlen(map[line - 1]) < index)
 		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
 	if (ft_strlen(map[line + 1]) < index)
 		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
