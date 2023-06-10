@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:32:00 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/10 11:36:14 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:48:04 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	is_attached(char **map, int line, int index, t_parse **parse)
 			if (ft_strlen(map[line + 1]) > index)
 				if (in_set("10NEWS", map[line + 1][index]))
 					break ;
+		if (in_set("10NEWS", map[line][index - 1]))
+			break;
 		index++;
 	}
 	if (!map[line][index])
