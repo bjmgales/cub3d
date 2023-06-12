@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/09 09:39:32 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:23:21 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_tex
 	int	tex_x;
 	int	tex_y;
 	int **buffer;
-	int *texture[8];
+	int **texture;
 	int	texture_width;
 	int	texture_height;
 }	t_tex;

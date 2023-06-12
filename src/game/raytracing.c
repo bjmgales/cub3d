@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/10 14:49:39 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 16:26:46 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,6 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 	  		draw(img, x, draw_start, draw_end, color);
 	  		//verLine(x, draw_start, draw_end, color);
     	 }
-
 }
 
 int exit_game(void)
