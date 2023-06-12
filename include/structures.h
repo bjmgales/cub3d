@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:56:37 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 17:30:39 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ typedef struct s_player{
 	char	orientation;
 }	t_player;
 
-
 typedef struct s_map
 {
-	char **map;
-} 	t_mapstr;
+	char	**map;
+}	t_mapstr;
 
 typedef struct s_data
 {
@@ -53,36 +52,38 @@ typedef struct s_data
 
 typedef struct t_num
 {
-	double time;
-	double old_time;
-	double frame_time;
-	double plane_x;
-	double plane_y;
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double move_speed;
-	double rot_speed;
-	double start;
+	double	time;
+	double	old_time;
+	double	frame_time;
+	double	plane_x;
+	double	plane_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	move_speed;
+	double	rot_speed;
+	double	start;
 }	t_num;
 
 typedef struct s_tex
 {
 	int	tex_x;
 	int	tex_y;
-	int **buffer;
-	int *texture[8];
+	int	**buffer;
+	int	*texture[8];
 	int	texture_width;
 	int	texture_height;
 }	t_tex;
 
 typedef struct s_parse
 {
-	char 		**map;
+	char		**map;
 	char		**ressources;
 	int			map_width;
 	int			map_height;
+	int			player_x;
+	int			player_y;
 	int			c_rgb[3];
 	int			f_rgb[3];
 	char		*ceiling;
@@ -98,12 +99,37 @@ typedef struct s_game
 	void		*mlx;
 	void		*window;
 
-	int			**map_ig;
+	char		**map_ig;
 	t_num		numig;
 	t_data		imgig;
 	t_tex		texig;
 	int			window_height;
 	int			window_width;
-}	t_game ;
+	t_parse		*parse;
+}	t_game;
+
+typedef struct s_calc
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		*se_draw;
+	int		color;
+	int		x;
+	int		w;
+	int		h;
+}	t_calc;
 
 #endif
