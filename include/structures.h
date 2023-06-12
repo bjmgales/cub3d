@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 15:40:27 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 17:30:39 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,29 @@ typedef struct s_game
 	int			window_width;
 	t_parse		*parse;
 }	t_game;
+
+typedef struct s_calc
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		*se_draw;
+	int		color;
+	int		x;
+	int		w;
+	int		h;
+}	t_calc;
 
 #endif

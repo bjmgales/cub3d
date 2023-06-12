@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:15:15 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 16:06:02 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:59 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int	main(int argc, char **argv)
 	game.imgig.addr = mlx_get_data_addr(game.imgig.img,
 			&game.imgig.bits_per_pixel, &game.imgig.line_length,
 			&game.imgig.endian);
-	game_loop(game, game.imgig, game.numig.pos_x, game.numig.pos_y,
-		game.numig.dir_x, game.numig.dir_y, game.numig.plane_x,
-		game.numig.plane_y, game.parse->map);
+	game_loop(game, game.imgig);
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);
 	mlx_hook(game.window, 17, (1L << 17), exit_game, &game);
 	mlx_hook(game.window, 2, (1L << 0), key_press_hook, &game);
