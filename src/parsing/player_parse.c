@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:09:56 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 15:36:13 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 20:37:06 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	p_parse_norm(char **map, t_parse **parse)
 {
 	int	i;
-	int	j;
 
 	i = -1;
-	j = -1;
 	while (map[++i])
 		if (in_set("NEWS", map[i][0]) || in_set("NEWS",
 			map[i][ft_strlen(map[i])]))

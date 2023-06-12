@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 18:58:52 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 20:41:15 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "structures.h"
 # include "parse.h"
 # include "utils.h"
-# include "game.h"
 
 char	*get_next_line(int fd);
 int		create_trgb(int t, int r, int g, int b);

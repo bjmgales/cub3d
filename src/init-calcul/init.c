@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_init.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:43 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 18:52:30 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 20:49:49 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_numig(t_game *game)
 	(*game).numig.pos_y = (*game).parse->player_y + 0.5;
 }
 
-double delta_dist_init(double d, double r)
+double	delta_dist_init(double d, double r)
 {
 	if (!r)
 		d = INFINITY;
@@ -74,9 +74,9 @@ double delta_dist_init(double d, double r)
 	return (d);
 }
 
-void game_loop_init(t_game game, t_calc *n)
+void	game_loop_init(t_game game, t_calc *n)
 {
-	(*n).camera_x = 2 * (*n).x /(double)(*n).w - 1;
+	(*n).camera_x = 2 * (*n).x / (double)(*n).w - 1;
 	(*n).ray_dir_x = game.numig.dir_x - game.numig.plane_x * (*n).camera_x;
 	(*n).ray_dir_y = game.numig.dir_y - game.numig.plane_y * (*n).camera_x;
 	(*n).map_x = game.numig.pos_x;
