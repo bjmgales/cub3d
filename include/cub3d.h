@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 15:38:00 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 17:11:45 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 
 char	*get_next_line(int fd);
 int		create_trgb(int t, int r, int g, int b);
-void	draw(t_data img, int x, int draw_start, int draw_end, int color);
+void	draw(t_data img, int x, int *se_draw, int color);
 int		key_press_hook(int keycode, void *params);
 double	time_calculator(void);
-void	game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x, double dir_y, double plane_x, double plane_y, char **map_ig);
+void	game_loop(t_game game, t_data img);
 int		exit_game(void);
 
 #endif
