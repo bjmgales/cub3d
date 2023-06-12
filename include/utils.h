@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:41:05 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:57:44 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/12 15:40:58 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void		is_cub(char *map_path, t_parse **parse);
 */
 char		**del_empty_lines(char **file);
 
-
 // *****************************************************************************
 // Functions - iteration_utils.c
 
@@ -167,5 +166,9 @@ void		free_char_array(char **tab);
 @param parse The parse struct to be freed
 */
 void		free_struct(t_parse **parse);
+
+void		init_camera_dir(t_game *game);
+
+void		init_numig(t_game *game);
 
 #endif
