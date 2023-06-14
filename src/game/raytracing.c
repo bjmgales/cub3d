@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:16:58 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/14 23:30:50 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/14 23:56:00 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,10 @@ unsigned int test_texture(t_game game, int side, int step)
 
 void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x, double dir_y, double plane_x, double plane_y, char **map_ig, t_parse *parse)
 {
-	(void)img;
+
+	printf("LA BOUCLE \n");
+	(void)plane_x;
+	(void)game;
 	int w = 1024;
 	int h = 720;
 
@@ -150,15 +153,15 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
     	{
 			//calculate ray position and direction
 			double camera_x = 2 * x / (double)w - 1; //x-coordinate in camera space
-			double ray_dir_x = dir_x + plane_x * camera_x;
-			double ray_dir_y = dir_y + plane_y * camera_x;
+			double ray_dir_x = dir_x - plane_x * camera_x;
+			double ray_dir_y = dir_y - plane_y * camera_x;
       //which box of the map we're in
    			int map_x = (int)pos_x;
     		int map_y = (int)pos_y;
 
       //length of ray from current position to next x or y-side
-    		double side_dist_x;
-    		double side_dist_y;
+    		double side_dist_x=0.0;
+    		double side_dist_y = 0.0;
 
        //length of ray from one x or y-side to next x or y-side
 		// TRY LATER WITH MATH.H INFINITY
@@ -167,28 +170,28 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 			double perp_wall_dist;
 
       //what direction to step in x or y-direction (either +1 or -1)
-		    int step_x;
-    		int step_y;
+		    int step_x = 0.0;
+    		int step_y=0.0;
 
 		    int hit = 0; //was there a wall hit?
-    		int side = 0; //was a NS or a EW wall hit?
+    		int side; //was a NS or a EW wall hit?
 
       //calculate step and initial sideDist
-		    if (ray_dir_x < 0)
+			if (ray_dir_x < 0)
 			{
 				step_x = -1;
 				side_dist_x = (pos_x - map_x) * delta_dist_x;
-			}
+      		}
 			else
 			{
 				step_x = 1;
 				side_dist_x = (map_x + 1.0 - pos_x) * delta_dist_x;
 			}
-			if (ray_dir_y < 0)
+		    if (ray_dir_y < 0)
 			{
 				step_y = -1;
 				side_dist_y = (pos_y - map_y) * delta_dist_y;
-      		}
+			}
 			else
 			{
 				step_y = 1;
@@ -199,29 +202,29 @@ void game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x
 			while (hit == 0)
       		{
         	//jump to next map square, either in x-direction, or in y-direction
-        		if (side_dist_x < side_dist_y)
+        		if (side_dist_y < side_dist_x)
         		{
-          			side_dist_x += delta_dist_x;
-          			map_x += step_x;
+          			side_dist_y += delta_dist_y;
+          			map_y += step_y;
           			side = 0;
        			}
         		else
         		{
-          			side_dist_y += delta_dist_y;
-          			map_y += step_y;
+          			side_dist_x += delta_dist_x;
+          			map_x += step_x;
           			side = 1;
         		}
-
         //Check if ray has hit a wall
-        		if (map_ig[map_x][map_y] > 0)
+        		if (map_ig[map_y][map_x] > '0')
 					hit = 1;
+
       		}
 
       //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
       		if (side == 0)
-				perp_wall_dist = (side_dist_x - delta_dist_x);
-      		else
 				perp_wall_dist = (side_dist_y - delta_dist_y);
+      		else
+				perp_wall_dist = (side_dist_x - delta_dist_x);
 
       //Calculate height of line to draw on screen
     		int line_height = (int)(h / perp_wall_dist);
@@ -283,6 +286,7 @@ int key_press_hook(int keycode, void *params)
 	t_game *game = (t_game *)params;
 	char **map_ig = game->map_ig;
 	t_parse *parse = &game->parseig;
+	// game->nmig.start = time_calculator();
 
 	game->numig.old_time = game->numig.time;
 	game->numig.time = time_calculator() - game->numig.start;
@@ -293,8 +297,21 @@ int key_press_hook(int keycode, void *params)
 	printf("---- time %f\n", game->numig.time);
 	printf("old_time %f\n", game->numig.old_time);
 
+    //speed modifiers
+    // game->numig.move_speed = game->numig.frame_time * 5.0; //the constant value is in squares/second
+	// printf("---- game->numig.move_speed : %f\n",game->numig.move_speed);
+    // game->numig.rot_speed = game->numig.frame_time * 3.0; //the constant value is in radians/second
+
 	game->numig.move_speed = 0.17;
 	game->numig.rot_speed = 0.10;
+
+
+	// printf("vec %f %f\n", game->numig.plane_x, game->numig.plane_y);
+	// printf("pos play %f %f\n", game->numig.pos_x, game->numig.pos_y);
+	// printf ("pos_x %f\n", game->numig.pos_x);
+	// printf ("dir_x %f\n", game->numig.dir_x);
+	// printf ("MS %f\n", game->numig.move_speed);
+	// printf ("pos_y %f\n", game->numig.pos_y);
 	if (keycode == 53)
 		exit_game();
 

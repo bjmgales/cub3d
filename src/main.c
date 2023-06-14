@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:15:15 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/14 22:55:48 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/14 23:46:25 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int main (int argc, char **argv)
 	game.imgig.addr = mlx_get_data_addr(game.imgig.img, &game.imgig.bits_per_pixel, &game.imgig.line_length, &game.imgig.endian);
 
 	game.parseig = *parse;
-	set_image(&game, &game.texig.no, "./ressources/textures/NO.XPM");
-	set_image(&game, &game.texig.so, "./ressources/textures/SO.XPM");
-	set_image(&game, &game.texig.ea, "./ressources/textures/EA.XPM");
-	set_image(&game, &game.texig.we, "./ressources/textures/WE.XPM");
+	set_image(&game, &game.texig.no, "./ressources/textures/NO.xpm");
+	set_image(&game, &game.texig.so, "./ressources/textures/SO.xpm");
+	set_image(&game, &game.texig.ea, "./ressources/textures/EA.xpm");
+	set_image(&game, &game.texig.we, "./ressources/textures/WE.xpm");
 
 	game_loop(game, game.imgig, game.numig.pos_x, game.numig.pos_y, game.numig.dir_x, game.numig.dir_y, game.numig.plane_x, game.numig.plane_y, game.map_ig, parse);
 
