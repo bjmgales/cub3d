@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 16:23:21 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/14 22:39:28 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,14 @@ typedef struct t_num
 
 typedef struct s_tex
 {
+	t_data no;
+	t_data so;
+	t_data we;
+	t_data ea;
 	int	tex_x;
 	int	tex_y;
 	int **buffer;
-	int **texture;
+	int *texture[8];
 	int	texture_width;
 	int	texture_height;
 }	t_tex;
@@ -104,6 +108,7 @@ typedef struct s_game
 	t_num		numig;
 	t_data		imgig;
 	t_tex		texig;
+	t_parse		parseig;
 	int			window_height;
 	int			window_width;
 }	t_game ;
