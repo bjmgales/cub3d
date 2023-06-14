@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:36:26 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/12 17:01:11 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/14 19:44:46 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	draw(t_data img, int x, int *se_draw, int color)
 {
 	while (se_draw[0] < se_draw[1])
 		my_mlx_pixel_put(&img, x, se_draw[1]--, color);
+	free(se_draw);
 }

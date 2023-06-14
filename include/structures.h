@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 17:30:39 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/14 19:07:41 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }	t_data;
 
 typedef struct t_num
@@ -102,6 +104,7 @@ typedef struct s_game
 	char		**map_ig;
 	t_num		numig;
 	t_data		imgig;
+	t_data		minimap;
 	t_tex		texig;
 	int			window_height;
 	int			window_width;
