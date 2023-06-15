@@ -73,58 +73,6 @@ void print_map(t_game *game, t_data img)
 }
 
 
-// void print_map(t_game *game)
-// {
-//	 int y = -1;
-//	 int x = -1;
-//	 int map_width = game->parse->map_width;
-//	 int map_height = game->parse->map_height;
-//	 int minimap_width = 200;
-//	 int minimap_height = 200;
-//	 int 5 = 5;
-
-//	 // Draw walls within the minimap boundaries
-//	 while (++y < map_height)
-//	 {
-//		 while (game->map_ig[y][++x])
-//		 {
-//			 if (game->map_ig[y][x] == '1')
-//			 {
-//				 int draw_x = (x * minimap_width) / map_width;
-//				 int draw_y = (y * minimap_height) / map_height;
-
-//				 for (int i = draw_x; i < draw_x + 5; i++)
-//				 {
-//					 mlx_pixel_put(game->mlx, game->window, i, draw_y, 16711680);
-//					 mlx_pixel_put(game->mlx, game->window, i, draw_y + cubesize, 16711680);
-//				 }
-//				 for (int j = draw_y + 1; j < draw_y + cubesize; j++)
-//				 {
-//					 mlx_pixel_put(game->mlx, game->window, draw_x, j, 16711680);
-//					 mlx_pixel_put(game->mlx, game->window, draw_x + cubesize, j, 16711680);
-//				 }
-//			 }
-//		 }
-//		 x = -1;
-//	 }
-
-//	 // Draw player at the center of the minimap
-//	 int player_x = (game->numig.pos_x * minimap_width) / map_width - (5 / 2);
-//	 int player_y = (game->numig.pos_y * minimap_height) / map_height - (5 / 2);
-
-//	 for (int i = player_x; i < player_x + 1; i++)
-//	 {
-//		 mlx_pixel_put(game->mlx, game->window, i, player_y, 7929700);
-//		 mlx_pixel_put(game->mlx, game->window, i, player_y - 1, 7929700);
-//	 }
-//	 for (int j = player_y + 1; j < player_y ; j++)
-//	 {
-//		 mlx_pixel_put(game->mlx, game->window, player_x, j, 7929700);
-//		 mlx_pixel_put(game->mlx, game->window, player_x, j, 7929700);
-//	 }
-// }
-
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
