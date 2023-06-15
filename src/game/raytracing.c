@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/14 19:44:50 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/15 14:49:02 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	game_loop(t_game game, t_data img)
 
 	printf("LA BOUCLE \n");
 	n.x = -1;
-	n.w = 1024;
-	n.h = 720;
+	n.w = game.window_width;
+	n.h = game.window_height;
 	while (++n.x < n.w)
 	{
 		game_loop_init(game, &n);
@@ -46,6 +46,7 @@ void	game_loop(t_game game, t_data img)
 		hit_wall(game, &n);
 		last_calcul(game, &n);
 		draw(img, n.x, n.se_draw, n.color);
+		free(n.se_draw);
 	}
 }
 

@@ -6,18 +6,19 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 20:48:56 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:44:00 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	up_down(int keycode, t_game *game)
+void	up_down(t_game *game, int type)
 {
+
 	char	**map_ig;
 
 	map_ig = game->map_ig;
-	if (keycode == 13 || keycode == 126)
+	if (type == 'U')
 	{
 		if (map_ig[(int)(game->numig.pos_y + game->numig.dir_y
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -26,7 +27,7 @@ void	up_down(int keycode, t_game *game)
 			+ game->numig.dir_x * game->numig.move_speed)] == '0')
 			game->numig.pos_x += game->numig.dir_x * game->numig.move_speed;
 	}
-	else if (keycode == 1 || keycode == 125)
+	else if (type == 'D')
 	{
 		if (map_ig[(int)(game->numig.pos_y - game->numig.dir_y
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -37,12 +38,12 @@ void	up_down(int keycode, t_game *game)
 	}
 }
 
-void	right_left(int keycode, t_game *game)
+void	right_left(t_game *game, int type)
 {
 	char	**map_ig;
 
 	map_ig = game->map_ig;
-	if (keycode == 0)
+	if (type == 'R')
 	{
 		if (map_ig[(int)(game->numig.pos_y + game->numig.plane_y
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -51,7 +52,7 @@ void	right_left(int keycode, t_game *game)
 			+ game->numig.plane_x * game->numig.move_speed)] == '0')
 			game->numig.pos_y += game->numig.plane_y * game->numig.move_speed;
 	}
-	if (keycode == 2)
+	else if (type == 'L')
 	{
 		if (map_ig[(int)(game->numig.pos_y + game->numig.plane_y
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -62,12 +63,12 @@ void	right_left(int keycode, t_game *game)
 	}
 }
 
-void	rotate_left(int keycode, t_game *game)
+void	rotate_left(t_game *game)
 {
 	double	olddir_x;
 	double	oldplane_x;
 
-	if (keycode == 123)
+	if ((*game).keys.left)
 	{
 		olddir_x = game->numig.dir_x;
 		game->numig.dir_x = game->numig.dir_x * cos(-game->numig.rot_speed)
@@ -82,12 +83,12 @@ void	rotate_left(int keycode, t_game *game)
 	}
 }
 
-void	rotate_right(int keycode, t_game *game)
+void	rotate_right(t_game *game)
 {
 	double	olddir_x;
 	double	oldplane_x;
 
-	if (keycode == 124)
+	if ((*game).keys.right)
 	{
 		olddir_x = game->numig.dir_x;
 		game->numig.dir_x = game->numig.dir_x * cos(game->numig.rot_speed)
@@ -102,7 +103,7 @@ void	rotate_right(int keycode, t_game *game)
 	}
 }
 
-int	key_press_hook(int keycode, void *params)
+int	key_press_hook(void *params)
 {
 	t_game	*game;
 
@@ -112,17 +113,17 @@ int	key_press_hook(int keycode, void *params)
 	game->numig.frame_time = (game->numig.time - game->numig.old_time) / 1000.0;
 	game->numig.move_speed = 0.17;
 	game->numig.rot_speed = 0.10;
-	if (keycode == 53)
-		exit_game();
-	up_down(keycode, game);
-	right_left(keycode, game);
-	rotate_left(keycode, game);
-	rotate_right(keycode, game);
 	mlx_clear_window(game->mlx, game->window);
 	game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
 	game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig
 			.bits_per_pixel, &game->imgig.line_length, &game->imgig.endian);
+	game->minimap.img = mlx_new_image(game->mlx,  200, 200);
+	game->minimap.addr = mlx_get_data_addr(game->minimap.img,
+			&game->minimap.bits_per_pixel, &game->minimap.line_length,
+			&game->minimap.endian);
 	game_loop(*game, game->imgig);
+	print_map(game, game->minimap);
 	mlx_put_image_to_window(game->mlx, game->window, game->imgig.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->minimap.img, 0 , 0);
 	return (0);
 }
