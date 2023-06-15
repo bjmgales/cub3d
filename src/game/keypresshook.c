@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/15 16:44:00 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:29:09 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	key_press_hook(void *params)
 	game->numig.old_time = game->numig.time;
 	game->numig.time = time_calculator() - game->numig.start;
 	game->numig.frame_time = (game->numig.time - game->numig.old_time) / 1000.0;
-	game->numig.move_speed = 0.17;
-	game->numig.rot_speed = 0.10;
+	game->numig.move_speed = 0.05;
+	game->numig.rot_speed = 0.03;
 	mlx_clear_window(game->mlx, game->window);
 	game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
 	game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig
