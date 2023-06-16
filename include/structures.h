@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/14 22:39:28 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 03:20:36 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ enum e_keycode
 	ARROW_UP
 };
 
+typedef struct s_keys{
+	int	a;
+	int d;
+	int w;
+	int s;
+	int up;
+	int down;
+	int left;
+	int right;
+}	t_keys;
+
 typedef struct s_player{
 	float	x;
 	float	y;
@@ -36,11 +47,10 @@ typedef struct s_player{
 	char	orientation;
 }	t_player;
 
-
 typedef struct s_map
 {
-	char **map;
-} 	t_mapstr;
+	char	**map;
+}	t_mapstr;
 
 typedef struct s_data
 {
@@ -49,22 +59,24 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }	t_data;
 
 typedef struct t_num
 {
-	double time;
-	double old_time;
-	double frame_time;
-	double plane_x;
-	double plane_y;
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double move_speed;
-	double rot_speed;
-	double start;
+	double	time;
+	double	old_time;
+	double	frame_time;
+	double	plane_x;
+	double	plane_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	move_speed;
+	double	rot_speed;
+	double	start;
 }	t_num;
 
 typedef struct s_tex
@@ -75,15 +87,15 @@ typedef struct s_tex
 	t_data ea;
 	int	tex_x;
 	int	tex_y;
-	int **buffer;
-	int *texture[8];
+	int	**buffer;
+	int	*texture[8];
 	int	texture_width;
 	int	texture_height;
 }	t_tex;
 
 typedef struct s_parse
 {
-	char 		**map;
+	char		**map;
 	char		**ressources;
 	int			map_width;
 	int			map_height;
@@ -105,12 +117,45 @@ typedef struct s_game
 	void		*window;
 
 	char		**map_ig;
-	t_num		numig;
-	t_data		imgig;
-	t_tex		texig;
-	t_parse		parseig;
+	void		*minimap_img;
 	int			window_height;
 	int			window_width;
-}	t_game ;
+	t_num		numig;
+	t_data		imgig;
+	t_data		minimap;
+	t_tex		texig;
+	t_parse		*parse;
+	t_keys		keys;
+}	t_game;
+
+typedef struct s_calc
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		*se_draw;
+	int		color;
+	int		x;
+	int		w;
+	int		h;
+
+	// textures variables
+
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+}	t_calc;
 
 #endif

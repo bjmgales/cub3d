@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/14 22:38:17 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 03:12:53 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,33 @@
 
 // *****************************************************************************
 // Personal library
-
 # include "libft.h"
 # include "structures.h"
 # include "parse.h"
 # include "utils.h"
-# include "game.h"
 
 char	*get_next_line(int fd);
 int		create_trgb(int t, int r, int g, int b);
-void 	draw(t_data img, int x, int draw_start, int draw_end, int color);
-int		key_press_hook(int keycode, void *params);
+void	draw(t_data img, int x, int *se_draw, int color);
+int		key_press_hook(void *params);
 double	time_calculator(void);
-void	game_loop(t_game game, t_data img, double pos_x, double pos_y, double dir_x, double dir_y, double plane_x, double plane_y, char **map_ig, t_parse *parse);
+void	game_loop(t_game game, t_data img);
+void	game_loop_init(t_game game, t_calc *n);
+void	ray_dir_calc(t_game game, t_calc *n);
 int		exit_game(void);
+void	hit_wall(t_game game, t_calc *n);
+void	last_calcul(t_game game, t_calc *n, t_data img);
+int		color_select(int tale);
+double	delta_dist_init(double d, double r);
+double	v_abs(double value);
+void	print_map(t_game *game, t_data img);
+int		lock_key(int key, t_game *game);
+int		unlock_key(int key, t_game *game);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		key_events(t_game *game);
+void	rotate_right(t_game *game);
+void	right_left(t_game *game, int type);
+void	rotate_left(t_game *game);
+void	up_down(t_game *game, int type);
 
 #endif

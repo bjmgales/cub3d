@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:32:00 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/14 22:47:26 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/12 15:32:40 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	is_surrounded(char **map, int line, int index, t_parse **parse)
+void	is_surrounded(char **map, int line, int index, t_parse **p)
 {
 	if (line == 0 || ft_strlen(map[line - 1]) < index)
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 	if (ft_strlen(map[line + 1]) < index)
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 	if (!in_set("10NEWS", map[line + 1][index]))
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 	if (!in_set("10NEWS", map[line - 1][index]))
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 	if (!in_set("10NEWS", map[line][index - 1]))
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 	if (!in_set("10NEWS", map[line][index + 1]))
-		print_free_exit("Error\nAn element must be surrounded by walls.\n", parse);
+		print_free_exit("Error\nAn element must be surrounded by walls.\n", p);
 }
 
 void	is_attached(char **map, int line, int index, t_parse **parse)
@@ -41,7 +41,7 @@ void	is_attached(char **map, int line, int index, t_parse **parse)
 				if (in_set("10NEWS", map[line + 1][index]))
 					break ;
 		if (in_set("10NEWS", map[line][index - 1]))
-			break;
+			break ;
 		index++;
 	}
 	if (!map[line][index])
