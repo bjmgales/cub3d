@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 03:56:31 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 04:01:52 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ unsigned int test_texture(t_game *game, int side, int step_x, int step_y)
 		if (step_y <= 0)
 			pixel = get_data_color(&game->texig.we, game->texig.tex_x, game->texig.tex_y,
 					game->texig.we.addr);
-		if (step_y > 1)
+		if (step_y > 0)
 			pixel = get_data_color(&game->texig.ea, game->texig.tex_x, game->texig.tex_y,
 					game->texig.ea.addr);
 	}	
