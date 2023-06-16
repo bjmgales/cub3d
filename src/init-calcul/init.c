@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:43 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 20:49:49 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/16 14:58:43 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ void	init_camera_dir(t_game *game)
 		init_cam_eastwest(game);
 }
 
+void	init_keys(t_game *game)
+{
+	(*game).keys.a = 0;
+	(*game).keys.d = 0;
+	(*game).keys.w = 0;
+	(*game).keys.s = 0;
+	(*game).keys.up = 0;
+	(*game).keys.down = 0;
+	(*game).keys.left = 0;
+	(*game).keys.right = 0;
+}
+
 void	init_numig(t_game *game)
 {
 	(*game).numig.time = 0;
@@ -63,15 +75,7 @@ void	init_numig(t_game *game)
 	(*game).numig.time = time_calculator() - (*game).numig.start;
 	(*game).numig.pos_x = (*game).parse->player_x + 0.5;
 	(*game).numig.pos_y = (*game).parse->player_y + 0.5;
-}
-
-double	delta_dist_init(double d, double r)
-{
-	if (!r)
-		d = INFINITY;
-	else if (r)
-		d = v_abs(1 / r);
-	return (d);
+	init_keys(game);
 }
 
 void	game_loop_init(t_game game, t_calc *n)

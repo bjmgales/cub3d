@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 17:30:39 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:29:09 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ enum e_keycode
 	ARROW_DOWN,
 	ARROW_UP
 };
+
+typedef struct s_keys{
+	int	a;
+	int	d;
+	int	w;
+	int	s;
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+}	t_keys;
 
 typedef struct s_player{
 	float	x;
@@ -48,6 +59,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }	t_data;
 
 typedef struct t_num
@@ -100,12 +113,16 @@ typedef struct s_game
 	void		*window;
 
 	char		**map_ig;
-	t_num		numig;
-	t_data		imgig;
-	t_tex		texig;
+	void		*minimap_img;
 	int			window_height;
 	int			window_width;
+	t_num		numig;
+	t_data		imgig;
+	t_data		minimap;
+	t_data		background;
+	t_tex		texig;
 	t_parse		*parse;
+	t_keys		keys;
 }	t_game;
 
 typedef struct s_calc

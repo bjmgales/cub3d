@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/12 20:52:11 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/15 15:59:05 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ double	v_abs(double value)
 		return (value);
 	else
 		return (value *= -1);
+}
+
+double	delta_dist_init(double d, double r)
+{
+	if (!r)
+		d = INFINITY;
+	else if (r)
+		d = v_abs(1 / r);
+	return (d);
 }
 
 void	ray_dir_calc(t_game game, t_calc *n)
