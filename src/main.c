@@ -97,10 +97,13 @@ int	main(int argc, char **argv)
 			&game.minimap.bits_per_pixel, &game.minimap.line_length,
 			&game.minimap.endian);
 
-	// j'minstall tsé ---------------
+	// j'minstalle tsé ---------------
 
-	set_image(&game, &game.texig.no, "./ressources/textures/NO.xpm");
-	set_image(&game, &game.texig.so, "./ressources/textures/SO.xpm");
+	game.texig.texture_width = 64;
+	game.texig.texture_height = 64;
+
+	set_image(&game, &game.texig.no, "./ressources/textures/NO.XPM");
+	set_image(&game, &game.texig.so, "./ressources/textures/yuyu.xpm");
 	set_image(&game, &game.texig.ea, "./ressources/textures/EA.xpm");
 	set_image(&game, &game.texig.we, "./ressources/textures/WE.xpm");
 

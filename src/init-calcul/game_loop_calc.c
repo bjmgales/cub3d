@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 04:01:52 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 07:27:54 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,47 +83,53 @@ void	hit_wall(t_game game, t_calc *n)
 unsigned int	get_data_color(t_data *data, int x, int y, void *addr)
 {
 	char	*dst;
+	// printf("VALEUR DE X %d\n", x);
+	// printf("VALEUR DE Y %d\n", y);
 	dst = addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
-}
-
-void	put_pixel(t_data *img, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	if (!color)
-		return ;
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 void	set_image(t_game *game, t_data *img, char *path)
 {
 	int i = 0;
-	int j = 0;
-	img->img = mlx_xpm_file_to_image(game->mlx, path, &i, &j);
+	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
+	// if (!img->img)
+	// 	exit(0);
 	img->addr = mlx_get_data_addr(img->img, &i, &i, &i);
+	// if (!img->addr)
+	// 	exit(0);
 }
 
-unsigned int test_texture(t_game *game, int side, int step_x, int step_y)
+unsigned int test_texture(t_game *game, t_calc *n)
 {
+	// welcome to rainbow road
+	
 	unsigned int pixel;
 	pixel = 0;
-	if (side == 0)
+	(void)(game);
+	// printf("salut salut map x %d\n", (*n).map_x);
+	// printf("salut salut map y %d\n", (*n).map_y);
+
+	// printf("salut salut map x %d\n", (*n).side);
+	if ((*n).side == 0)
 	{
-		if (step_x <= 0)
+		if ((*n).step_y <= 0)
+			// pixel = create_trgb(0, 255, 0, 0);
 			pixel = get_data_color(&game->texig.no, game->texig.tex_x, game->texig.tex_y,
 					game->texig.no.addr);
-		if (step_x > 0)
+		if ((*n).step_y > 0)
+			// pixel = create_trgb(255, 0, 0, 0);
 			pixel = get_data_color(&game->texig.so, game->texig.tex_x, game->texig.tex_y,
 					game->texig.so.addr);
 	}
-	if (side == 1)
+	if ((*n).side == 1)
 	{
-		if (step_y <= 0)
+		if ((*n).step_x <= 0)
+			// pixel = create_trgb(0, 0, 255, 0);
 			pixel = get_data_color(&game->texig.we, game->texig.tex_x, game->texig.tex_y,
 					game->texig.we.addr);
-		if (step_y > 0)
+		if ((*n).step_x > 0)
+			// pixel = create_trgb(0, 0, 0, 255);
 			pixel = get_data_color(&game->texig.ea, game->texig.tex_x, game->texig.tex_y,
 					game->texig.ea.addr);
 	}	
@@ -133,6 +139,7 @@ unsigned int test_texture(t_game *game, int side, int step_x, int step_y)
 
 void	last_calcul(t_game game, t_calc *n, t_data img)
 {
+	(void)img;
 	if ((*n).side == 0)
 		(*n).perp_wall_dist = ((*n).side_dist_y - ((*n).delta_dist_y));
 	else
@@ -157,6 +164,9 @@ void	last_calcul(t_game game, t_calc *n, t_data img)
     	(*n).wall_x -= floor(((*n).wall_x));
 
       //x coordinate on the texture
+	//   printf(" HELLOOOOO %d\n", line_height);
+	//   exit(0);
+	  
     	game.texig.tex_x = (int)((*n).wall_x * (double)(game.texig.texture_width));
     	if((*n).side == 0 && (*n).ray_dir_x > 0)
 			game.texig.tex_x = game.texig.texture_width - game.texig.tex_x - 1;
@@ -169,15 +179,16 @@ void	last_calcul(t_game game, t_calc *n, t_data img)
 		(*n).tex_pos = ((*n).se_draw[0] - (*n).h / 2 + (*n).line_height / 2) * (*n).step;
 		
 		
-		while ((*n).se_draw[0] < (*n).se_draw[1])
-		{
+		// while ((*n).se_draw[0] < (*n).se_draw[1])
+		// {
+			// printf("VALEUR DE 0 %d\n", (*n).se_draw[0]);
+			// printf("VALEUR DE 1 %d\n", (*n).se_draw[1]);
 			game.texig.tex_y = (int)(*n).tex_pos & (game.texig.texture_height - 1);
 			(*n).tex_pos += (*n).step;
-			(*n).color = test_texture(&game, (*n).side, (*n).step_x, (*n).step_y);
-			// (*n).color = create_trgb(0, 255, 0, 0);
-			my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
-			(*n).se_draw[0]++;
-		}
+			(*n).color = test_texture(&game, n);
+			// (*n).se_draw[0]++;
+			// my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
+		// }
 	}
 	// (*n).(*n).color = (*n).color_select(game.map_ig[(*n).map_y][(*n).map_x]);
 	// if ((*n).side == 1)
