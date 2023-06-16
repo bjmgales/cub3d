@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 03:14:34 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 03:56:31 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,28 +105,28 @@ void	set_image(t_game *game, t_data *img, char *path)
 	img->addr = mlx_get_data_addr(img->img, &i, &i, &i);
 }
 
-unsigned int test_texture(t_game game, int side, int step)
+unsigned int test_texture(t_game *game, int side, int step_x, int step_y)
 {
 	unsigned int pixel;
 	pixel = 0;
 	if (side == 0)
 	{
-		if (step <= 0)
-			pixel = get_data_color(&game.texig.no, game.texig.tex_x, game.texig.tex_y,
-					game.texig.no.addr);
-		if (step > 0)
-			pixel = get_data_color(&game.texig.so, game.texig.tex_x, game.texig.tex_y,
-					game.texig.so.addr);
+		if (step_x <= 0)
+			pixel = get_data_color(&game->texig.no, game->texig.tex_x, game->texig.tex_y,
+					game->texig.no.addr);
+		if (step_x > 0)
+			pixel = get_data_color(&game->texig.so, game->texig.tex_x, game->texig.tex_y,
+					game->texig.so.addr);
 	}
-		if (side == 1)
-		{
-			if (step <= 0)
-				pixel = get_data_color(&game.texig.we, game.texig.tex_x, game.texig.tex_y,
-						game.texig.we.addr);
-			if (step > 1)
-				pixel = get_data_color(&game.texig.ea, game.texig.tex_x, game.texig.tex_y,
-						game.texig.ea.addr);
-		}	
+	if (side == 1)
+	{
+		if (step_y <= 0)
+			pixel = get_data_color(&game->texig.we, game->texig.tex_x, game->texig.tex_y,
+					game->texig.we.addr);
+		if (step_y > 1)
+			pixel = get_data_color(&game->texig.ea, game->texig.tex_x, game->texig.tex_y,
+					game->texig.ea.addr);
+	}	
 	return pixel;
 }
 
@@ -173,7 +173,8 @@ void	last_calcul(t_game game, t_calc *n, t_data img)
 		{
 			game.texig.tex_y = (int)(*n).tex_pos & (game.texig.texture_height - 1);
 			(*n).tex_pos += (*n).step;
-			(*n).color = test_texture(game, (*n).side, (*n).step_x);
+			(*n).color = test_texture(&game, (*n).side, (*n).step_x, (*n).step_y);
+			// (*n).color = create_trgb(0, 255, 0, 0);
 			my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
 			(*n).se_draw[0]++;
 		}
