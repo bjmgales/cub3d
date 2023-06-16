@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 07:25:17 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 08:22:10 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,14 @@ void	game_loop(t_game game, t_data img)
 		game_loop_init(game, &n);
 		ray_dir_calc(game, &n);
 		hit_wall(game, &n);
-		last_calcul(game, &n, img);
+		last_calcul(&game, &n, img);
+		
+					// printf("valeur largeur %d\n", game.texig.texture_width);
+					// printf("tex_x a la sortie %d\n", game.texig.tex_x);
+					// printf("tex_y a la sortie %d\n", game.texig.tex_y);
+					// printf("color a la sortie %d\n", n.color);
+					// printf("---------------------------------------\n");
+						// exit(0);
 		draw(img, n.x, n.se_draw, n.color);
 		free(n.se_draw);
 	}

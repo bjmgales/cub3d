@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 07:27:54 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 08:25:23 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ unsigned int test_texture(t_game *game, t_calc *n)
 	
 	unsigned int pixel;
 	pixel = 0;
-	(void)(game);
+	// (void)(game);
 	// printf("salut salut map x %d\n", (*n).map_x);
 	// printf("salut salut map y %d\n", (*n).map_y);
 
@@ -137,7 +137,7 @@ unsigned int test_texture(t_game *game, t_calc *n)
 }
 
 
-void	last_calcul(t_game game, t_calc *n, t_data img)
+void	last_calcul(t_game *game, t_calc *n, t_data img)
 {
 	(void)img;
 	if ((*n).side == 0)
@@ -157,40 +157,60 @@ void	last_calcul(t_game game, t_calc *n, t_data img)
 	// textures calcul implementation --------------------------
 
 	    //calculate value of wall_x
+
+		// inversion of x / y fixed wall_x and so tex_x
     	if ((*n).side == 0)
-			(*n).wall_x = game.numig.pos_y + (*n).perp_wall_dist * (*n).ray_dir_y;
+			(*n).wall_x = game->numig.pos_x + (*n).perp_wall_dist * (*n).ray_dir_x;
     	else
-			(*n).wall_x = game.numig.pos_x + (*n).perp_wall_dist * (*n).ray_dir_x;
+			(*n).wall_x = game->numig.pos_y + (*n).perp_wall_dist * (*n).ray_dir_y;
     	(*n).wall_x -= floor(((*n).wall_x));
 
       //x coordinate on the texture
 	//   printf(" HELLOOOOO %d\n", line_height);
 	//   exit(0);
 	  
-    	game.texig.tex_x = (int)((*n).wall_x * (double)(game.texig.texture_width));
-    	if((*n).side == 0 && (*n).ray_dir_x > 0)
-			game.texig.tex_x = game.texig.texture_width - game.texig.tex_x - 1;
-    	if((*n).side == 1 && (*n).ray_dir_y < 0)
-			game.texig.tex_x = game.texig.texture_width - game.texig.tex_x - 1;
-
+    	game->texig.tex_x = (int)((*n).wall_x * (double)(game->texig.texture_width));
+    	if(((*n).side == 0 && (*n).ray_dir_x > 0) || ((*n).side == 1 && (*n).ray_dir_y < 0))
+			game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
+    	// game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
     // How much to increase the texture coordinate per screen pixel
-    	(*n).step = 1.0 * game.texig.texture_height / (*n).line_height;
+    	(*n).step = 1.0 * game->texig.texture_height / (*n).line_height;
     // Starting texture coordinate
 		(*n).tex_pos = ((*n).se_draw[0] - (*n).h / 2 + (*n).line_height / 2) * (*n).step;
 		
+
+		// tex_x_y irrelevant ? why ?
+		// tex_x not the same anymore at the end of the function ??????????? <- fixed
 		
 		// while ((*n).se_draw[0] < (*n).se_draw[1])
 		// {
 			// printf("VALEUR DE 0 %d\n", (*n).se_draw[0]);
 			// printf("VALEUR DE 1 %d\n", (*n).se_draw[1]);
-			game.texig.tex_y = (int)(*n).tex_pos & (game.texig.texture_height - 1);
+			game->texig.tex_y = (int)(*n).tex_pos & (game->texig.texture_height - 1);
 			(*n).tex_pos += (*n).step;
-			(*n).color = test_texture(&game, n);
+			(*n).color = test_texture(game, n);
+			
+			
+			
+			
+			
+			// printf("pos_y dans last calcul %f\n", game->numig.pos_y);
+			// printf("pos_x dans last calcul %f\n", game->numig.pos_x);
+			printf("wall_x dans last calcul %f\n", (*n).wall_x);
+			printf("tex_x dans last calcul %d\n", game->texig.tex_x);
+			// printf("tex_y dans last calcul %d\n", game->texig.tex_y);
+			// printf("color dans last calcul %d\n", (*n).color);
+			printf("---------------------------------------\n");
+
+			
+			
+			
+			
 			// (*n).se_draw[0]++;
 			// my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
 		// }
 	}
-	// (*n).(*n).color = (*n).color_select(game.map_ig[(*n).map_y][(*n).map_x]);
+	// (*n).(*n).color = (*n).color_select(game->map_ig[(*n).map_y][(*n).map_x]);
 	// if ((*n).side == 1)
 	// 	(*n).(*n).color = ((*n).(*n).color / 2);
 
