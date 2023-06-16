@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/15 16:01:13 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:29:09 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ enum e_keycode
 
 typedef struct s_keys{
 	int	a;
-	int d;
-	int w;
-	int s;
-	int up;
-	int down;
-	int left;
-	int right;
+	int	d;
+	int	w;
+	int	s;
+	int	up;
+	int	down;
+	int	left;
+	int	right;
 }	t_keys;
 
 typedef struct s_player{
@@ -119,6 +119,7 @@ typedef struct s_game
 	t_num		numig;
 	t_data		imgig;
 	t_data		minimap;
+	t_data		background;
 	t_tex		texig;
 	t_parse		*parse;
 	t_keys		keys;

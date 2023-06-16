@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/15 17:29:09 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/16 16:21:55 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	up_down(t_game *game, int type)
 {
-
 	char	**map_ig;
 
 	map_ig = game->map_ig;
@@ -117,13 +116,7 @@ int	key_press_hook(void *params)
 	game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
 	game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig
 			.bits_per_pixel, &game->imgig.line_length, &game->imgig.endian);
-	game->minimap.img = mlx_new_image(game->mlx,  200, 200);
-	game->minimap.addr = mlx_get_data_addr(game->minimap.img,
-			&game->minimap.bits_per_pixel, &game->minimap.line_length,
-			&game->minimap.endian);
 	game_loop(*game, game->imgig);
-	print_map(game, game->minimap);
 	mlx_put_image_to_window(game->mlx, game->window, game->imgig.img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->minimap.img, 0 , 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:04:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/15 16:51:00 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/16 15:04:46 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	lock_key(int key, t_game *game)
 
 int	unlock_key(int key, t_game *game)
 {
-	printf("%d\n", key);
+	if (key == 53)
+		print_free_exit("Thanks for playing\n", &game->parse);
 	if (key == 13 || key == 126)
 		(*game).keys.up = 0;
 	else if (key == 1 || key == 125)
@@ -51,7 +52,7 @@ int	key_events(t_game *game)
 {
 	if (game->keys.up)
 		up_down(game, 'U');
-	else if(game->keys.down)
+	else if (game->keys.down)
 		up_down(game, 'D');
 	if (game->keys.a)
 		right_left(game, 'R');
@@ -62,4 +63,5 @@ int	key_events(t_game *game)
 	else if (game->keys.left)
 		rotate_left(game);
 	key_press_hook(game);
+	return (0);
 }
