@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:36:26 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/16 10:27:47 by ctardy           ###   ########.fr       */
+/*   Created: 2021/11/01 11:33:03 by ctardy            #+#    #+#             */
+/*   Updated: 2021/11/01 15:19:30 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	draw(t_data img, int x, int *se_draw, int color)
-{
-	while (se_draw[0] < se_draw[1])
-		my_mlx_pixel_put(&img, x, se_draw[1]--, color);
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

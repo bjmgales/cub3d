@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:36:26 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/16 10:27:47 by ctardy           ###   ########.fr       */
+/*   Created: 2021/10/20 15:59:33 by ctardy            #+#    #+#             */
+/*   Updated: 2021/10/20 21:20:42 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+	unsigned char	*inter;
 
-void	draw(t_data img, int x, int *se_draw, int color)
-{
-	while (se_draw[0] < se_draw[1])
-		my_mlx_pixel_put(&img, x, se_draw[1]--, color);
+	inter = b;
+	while (len > 0)
+	{
+		*inter = (unsigned char) c;
+		inter++;
+		len--;
+	}
+	return (b);
 }
+/*
+int main()
+{
+	char test[6] = "hello";
+	int c = 48;
+	size_t len = 3;
+	printf("%s\n", ft_memset(test, c, len));
+	printf("%s\n", memset(test, c, len));
+
+}
+*/

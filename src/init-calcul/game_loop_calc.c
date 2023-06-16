@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 08:25:23 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 11:00:32 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,15 @@ unsigned int	get_data_color(t_data *data, int x, int y, void *addr)
 
 void	set_image(t_game *game, t_data *img, char *path)
 {
-	int i = 0;
 	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
 	// if (!img->img)
 	// 	exit(0);
-	img->addr = mlx_get_data_addr(img->img, &i, &i, &i);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+
+
+	// mlx_get_data_addr(game.minimap.img,
+	// 		&game.minimap.bits_per_pixel, &game.minimap.line_length,
+	// 		&game.minimap.endian);
 	// if (!img->addr)
 	// 	exit(0);
 }
@@ -106,11 +110,13 @@ unsigned int test_texture(t_game *game, t_calc *n)
 	
 	unsigned int pixel;
 	pixel = 0;
-	// (void)(game);
-	// printf("salut salut map x %d\n", (*n).map_x);
-	// printf("salut salut map y %d\n", (*n).map_y);
 
-	// printf("salut salut map x %d\n", (*n).side);
+			// printf("tex_x dans last calcuuuuuul %d\n", game->texig.tex_x);
+			// printf("tex_y dans last calcuuuuuul %d\n", game->texig.tex_y);
+			// exit(0);
+	// this fixed the spread texture face to the player (inversion x y)
+	// textures colors perfect
+
 	if ((*n).side == 0)
 	{
 		if ((*n).step_y <= 0)
@@ -166,26 +172,32 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
     	(*n).wall_x -= floor(((*n).wall_x));
 
       //x coordinate on the texture
-	//   printf(" HELLOOOOO %d\n", line_height);
-	//   exit(0);
 	  
     	game->texig.tex_x = (int)((*n).wall_x * (double)(game->texig.texture_width));
+
     	if(((*n).side == 0 && (*n).ray_dir_x > 0) || ((*n).side == 1 && (*n).ray_dir_y < 0))
 			game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
     	// game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
     // How much to increase the texture coordinate per screen pixel
-    	(*n).step = 1.0 * game->texig.texture_height / (*n).line_height;
+    	(*n).step = (1.0 * game->texig.texture_height / (*n).line_height);
+		// printf("hauteur tex %d\n", game->texig.texture_height);
+		// printf("valeur de line %d\n", n->line_height);
+		// printf("valeur de step %f\n", n->step);
+		// exit(0);
     // Starting texture coordinate
-		(*n).tex_pos = ((*n).se_draw[0] - (*n).h / 2 + (*n).line_height / 2) * (*n).step;
+		(*n).tex_pos = ((double)(*n).se_draw[0] - (double)(*n).h / 2) + ((*n).line_height / 2) * (*n).step;
+		// printf("valeur de h %d\n", n->h);
+		// exit(0);
 		
 
 		// tex_x_y irrelevant ? why ?
 		// tex_x not the same anymore at the end of the function ??????????? <- fixed
 		
-		// while ((*n).se_draw[0] < (*n).se_draw[1])
-		// {
+		while ((*n).se_draw[0] < (*n).se_draw[1])
+		{
 			// printf("VALEUR DE 0 %d\n", (*n).se_draw[0]);
 			// printf("VALEUR DE 1 %d\n", (*n).se_draw[1]);
+			// exit(0);
 			game->texig.tex_y = (int)(*n).tex_pos & (game->texig.texture_height - 1);
 			(*n).tex_pos += (*n).step;
 			(*n).color = test_texture(game, n);
@@ -194,21 +206,21 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 			
 			
 			
-			// printf("pos_y dans last calcul %f\n", game->numig.pos_y);
-			// printf("pos_x dans last calcul %f\n", game->numig.pos_x);
-			printf("wall_x dans last calcul %f\n", (*n).wall_x);
-			printf("tex_x dans last calcul %d\n", game->texig.tex_x);
+			// printf("salut salut je suis step %f\n", (*n).step);
+			// printf("tex_pos dans last calcul %f\n", (*n).tex_pos);
+			// // printf("pos_y dans last calcul %f\n", game->numig.pos_y);
+			// // printf("pos_x dans last calcul %f\n", game->numig.pos_x);
+			// // printf("wall_x dans last calcul %f\n", (*n).wall_x);
+			// printf("tex_x dans last calcul %d\n", game->texig.tex_x);
 			// printf("tex_y dans last calcul %d\n", game->texig.tex_y);
 			// printf("color dans last calcul %d\n", (*n).color);
-			printf("---------------------------------------\n");
+			// printf("---------------------------------------\n");
 
-			
-			
-			
-			
-			// (*n).se_draw[0]++;
-			// my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
-		// }
+			(*n).se_draw[0]++;
+			my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
+			// if ((*n).se_draw[0] == (*n).se_draw[1] - 1)
+			// 	exit(0);
+		}
 	}
 	// (*n).(*n).color = (*n).color_select(game->map_ig[(*n).map_y][(*n).map_x]);
 	// if ((*n).side == 1)

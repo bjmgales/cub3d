@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:36:26 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/16 10:27:47 by ctardy           ###   ########.fr       */
+/*   Created: 2021/10/20 19:51:15 by ctardy            #+#    #+#             */
+/*   Updated: 2021/10/20 19:55:01 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	ft_tolower(int c)
 {
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }
+/*
+int main ()
+{
+	int test = 65;
+	int test2 = 90;
+	int test3 = 115;
 
-void	draw(t_data img, int x, int *se_draw, int color)
-{
-	while (se_draw[0] < se_draw[1])
-		my_mlx_pixel_put(&img, x, se_draw[1]--, color);
+	printf("%c\n%c\n%c\n",ft_tolower(test), ft_tolower(test2), ft_tolower(test3));
 }
+*/

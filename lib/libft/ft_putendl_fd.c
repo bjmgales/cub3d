@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:36:26 by ctardy            #+#    #+#             */
-/*   Updated: 2023/06/16 10:27:47 by ctardy           ###   ########.fr       */
+/*   Created: 2021/10/29 22:05:13 by ctardy            #+#    #+#             */
+/*   Updated: 2021/11/01 15:23:14 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+	int	i;
 
-void	draw(t_data img, int x, int *se_draw, int color)
-{
-	while (se_draw[0] < se_draw[1])
-		my_mlx_pixel_put(&img, x, se_draw[1]--, color);
+	if (!s)
+		return ;
+	i = -1;
+	while (s[++i])
+		ft_putchar_fd(s[i], fd);
+	ft_putchar_fd('\n', fd);
 }

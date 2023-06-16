@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 08:22:10 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/16 10:35:06 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	game_loop(t_game game, t_data img)
 					// printf("color a la sortie %d\n", n.color);
 					// printf("---------------------------------------\n");
 						// exit(0);
-		draw(img, n.x, n.se_draw, n.color);
+		// draw(img, n.x, n.se_draw, n.color);
 		free(n.se_draw);
 	}
 }
