@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 11:00:32 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/18 15:26:13 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,9 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 {
 	(void)img;
 	if ((*n).side == 0)
-		(*n).perp_wall_dist = ((*n).side_dist_y - ((*n).delta_dist_y));
+		(*n).perp_wall_dist = ((*n).side_dist_y - (*n).delta_dist_y);
 	else
-		(*n).perp_wall_dist = ((*n).side_dist_x - (*n).delta_dist_x);
+		(*n).perp_wall_dist = ((*n).side_dist_x - ((*n).delta_dist_x));
 	(*n).line_height = (int)((*n).h / (*n).perp_wall_dist);
 	(*n).se_draw = malloc(sizeof(int) * 2);
 	(*n).se_draw[0] = -(*n).line_height / 2 + (*n).h / 2;
@@ -164,32 +164,37 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 
 	    //calculate value of wall_x
 
-		// inversion of x / y fixed wall_x and so tex_x
-    	if ((*n).side == 0)
-			(*n).wall_x = game->numig.pos_x + (*n).perp_wall_dist * (*n).ray_dir_x;
-    	else
-			(*n).wall_x = game->numig.pos_y + (*n).perp_wall_dist * (*n).ray_dir_y;
-    	(*n).wall_x -= floor(((*n).wall_x));
 
       //x coordinate on the texture
 	  
-    	game->texig.tex_x = (int)((*n).wall_x * (double)(game->texig.texture_width));
 
-    	if(((*n).side == 0 && (*n).ray_dir_x > 0) || ((*n).side == 1 && (*n).ray_dir_y < 0))
-			game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
+
     	// game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
     // How much to increase the texture coordinate per screen pixel
-    	(*n).step = (1.0 * game->texig.texture_height / (*n).line_height);
+    	(*n).step = (double)(1.0 * (double)game->texig.texture_height / (double)(*n).line_height);
 		// printf("hauteur tex %d\n", game->texig.texture_height);
 		// printf("valeur de line %d\n", n->line_height);
 		// printf("valeur de step %f\n", n->step);
 		// exit(0);
     // Starting texture coordinate
-		(*n).tex_pos = ((double)(*n).se_draw[0] - (double)(*n).h / 2) + ((*n).line_height / 2) * (*n).step;
+		(*n).tex_pos = ((double)(*n).se_draw[0] - ((double)(*n).h / 2)) + ((*n).line_height / 2) * (*n).step;
 		// printf("valeur de h %d\n", n->h);
 		// exit(0);
 		
 
+		// inversion of x / y fixed wall_x and so tex_x
+    	if ((*n).side == 0)
+			(*n).wall_x = game->numig.pos_x + ((*n).perp_wall_dist * (*n).ray_dir_x);
+    	else
+			(*n).wall_x = game->numig.pos_y + ((*n).perp_wall_dist * (*n).ray_dir_y);
+
+			
+    	(*n).wall_x -= floor(((*n).wall_x));
+		game->texig.tex_x = (int)((*n).wall_x * (game->texig.texture_width));
+
+		
+    	if(((*n).side == 0 && (*n).ray_dir_y > 0) || ((*n).side == 1 && (*n).ray_dir_x < 0))
+			game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
 		// tex_x_y irrelevant ? why ?
 		// tex_x not the same anymore at the end of the function ??????????? <- fixed
 		
@@ -199,12 +204,9 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 			// printf("VALEUR DE 1 %d\n", (*n).se_draw[1]);
 			// exit(0);
 			game->texig.tex_y = (int)(*n).tex_pos & (game->texig.texture_height - 1);
+
 			(*n).tex_pos += (*n).step;
 			(*n).color = test_texture(game, n);
-			
-			
-			
-			
 			
 			// printf("salut salut je suis step %f\n", (*n).step);
 			// printf("tex_pos dans last calcul %f\n", (*n).tex_pos);
@@ -216,8 +218,8 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 			// printf("color dans last calcul %d\n", (*n).color);
 			// printf("---------------------------------------\n");
 
-			(*n).se_draw[0]++;
 			my_mlx_pixel_put(&img, (*n).x, (*n).se_draw[0], (*n).color);
+			(*n).se_draw[0]++;
 			// if ((*n).se_draw[0] == (*n).se_draw[1] - 1)
 			// 	exit(0);
 		}
