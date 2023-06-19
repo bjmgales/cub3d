@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 17:29:09 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/19 10:57:07 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,15 @@ typedef struct s_parse
 	char		*east;
 }	t_parse;
 
+typedef struct s_minimap
+{
+	char **minimap;
+	int player_x;
+	int	player_y;
+	int minimap_w;
+	int minimap_h;
+}	t_minimap;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -118,11 +127,10 @@ typedef struct s_game
 	int			window_width;
 	t_num		numig;
 	t_data		imgig;
-	t_data		minimap;
-	t_data		background;
 	t_tex		texig;
 	t_parse		*parse;
 	t_keys		keys;
+	t_minimap	minimap;
 }	t_game;
 
 typedef struct s_calc
