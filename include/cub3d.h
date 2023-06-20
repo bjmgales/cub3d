@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 17:02:00 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:44:17 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	right_left(t_game *game, int type);
 void	rotate_left(t_game *game);
 void	up_down(t_game *game, int type);
 void	init_img(t_game *game);
+void	draw_minimap(t_game *game, t_data img);
 
 #endif
