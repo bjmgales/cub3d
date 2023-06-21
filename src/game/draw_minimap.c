@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:43:45 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/20 11:48:21 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/21 10:25:20 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	draw_border(t_data img)
 	x = -1;
 	while (++x < 200)
 	{
-		if (x < 192)
+		if (x < 1)
+			draw(img, x, (int [2]){0,
+				200}, 0);
+		else if (x < 190)
 			draw(img, x, (int [2]){0,
 				195}, 16777215);
 		else
@@ -28,7 +31,7 @@ void	draw_border(t_data img)
 	}
 	x = -1;
 	while (++x < 200)
-		draw(img, x, (int [2]){195, 200}, 0);
+		draw(img, x, (int [2]){190, 200}, 0);
 }
 
 void	draw_walls(t_data img, int x, int y)
