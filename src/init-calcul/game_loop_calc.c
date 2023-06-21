@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:45:51 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/18 15:26:13 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/21 18:45:32 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	last_calcul(t_game *game, t_calc *n, t_data img)
 		// printf("valeur de step %f\n", n->step);
 		// exit(0);
     // Starting texture coordinate
-		(*n).tex_pos = ((double)(*n).se_draw[0] - ((double)(*n).h / 2)) + ((*n).line_height / 2) * (*n).step;
+	//	(*n).tex_pos = ((double)(*n).se_draw[0] - ((double)(*n).h / 2)) + ((*n).line_height / 2) * (*n).step;
 		// printf("valeur de h %d\n", n->h);
 		// exit(0);
 		
