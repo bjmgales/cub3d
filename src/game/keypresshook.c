@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypresshook.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 17:12:45 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 20:30:22 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	up_down(t_game *game, int type)
 {
-
 	char	**map_ig;
 
 	map_ig = game->map_ig;
@@ -37,8 +36,6 @@ void	up_down(t_game *game, int type)
 			game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
 	}
 }
-
-///////////////////////////
 
 void	right_left(t_game *game, int type)
 {

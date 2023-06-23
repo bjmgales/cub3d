@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 16:29:44 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 20:58:29 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ typedef struct t_num
 
 typedef struct s_tex
 {
-	t_data no;
-	t_data so;
-	t_data we;
-	t_data ea;
-	int	tex_x;
-	int	tex_y;
-	int	texture_width;
-	int	texture_height;
+	t_data	no;
+	t_data	so;
+	t_data	we;
+	t_data	ea;
+	int		tex_x;
+	int		tex_y;
+	int		texture_width;
+	int		texture_height;
 }	t_tex;
 
 typedef struct s_parse
@@ -111,11 +111,11 @@ typedef struct s_parse
 
 typedef struct s_minimap
 {
-	char **minimap;
-	int player_x;
-	int	player_y;
-	int minimap_w;
-	int minimap_h;
+	char	**minimap;
+	int		player_x;
+	int		player_y;
+	int		minimap_w;
+	int		minimap_h;
 }	t_minimap;
 
 typedef struct s_game
