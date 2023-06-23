@@ -102,8 +102,8 @@ int	main(int argc, char **argv)
 	game.texig.texture_width = 64;
 	game.texig.texture_height = 64;
 
-	set_image(&game, &game.texig.no, "./ressources/textures/NO.XPM");
-	set_image(&game, &game.texig.so, "./ressources/textures/yuyu.xpm");
+	set_image(&game, &game.texig.no, "./ressources/textures/NO.xpm");
+	set_image(&game, &game.texig.so, "./ressources/textures/SO.xpm");
 	set_image(&game, &game.texig.ea, "./ressources/textures/EA.xpm");
 	set_image(&game, &game.texig.we, "./ressources/textures/WE.xpm");
 
@@ -112,10 +112,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);
 	mlx_put_image_to_window(game.mlx, game.window, game.minimap.img, 0, 0);
 	mlx_hook(game.window, 2, 0, lock_key, &game);
-	// mlx_hook(game.window, 17, (1L << 17), exit_game, &game);
-	// mlx_hook(game.window, 2, (1L << 0), key_press_hook, &game);
 	mlx_hook(game.window, 3, 0, unlock_key, &game);
-	// mlx_hook(game.window, 2, (1L << 0), minimap_test, &game);
 	mlx_loop_hook(game.mlx, key_events, &game);
 	mlx_loop(game.mlx);
 }

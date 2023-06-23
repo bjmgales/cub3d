@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:04:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 02:31:16 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:24:52 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	lock_key(int key, t_game *game)
 
 int	unlock_key(int key, t_game *game)
 {
-	printf("%d\n", key);
+	// printf("%d\n", key);
 	if (key == 13 || key == 126)
 		(*game).keys.up = 0;
 	else if (key == 1 || key == 125)

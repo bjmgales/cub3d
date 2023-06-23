@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:43 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/18 13:58:41 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:39:13 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	init_numig(t_game *game)
 void	game_loop_init(t_game game, t_calc *n)
 {
 	(*n).camera_x = 2 * (*n).x / (double)(*n).w - 1;
-	(*n).ray_dir_x = game.numig.dir_x - game.numig.plane_x * (*n).camera_x;
-	(*n).ray_dir_y = game.numig.dir_y - game.numig.plane_y * (*n).camera_x;
+	(*n).ray_dir_x = game.numig.dir_x + game.numig.plane_x * (*n).camera_x;
+	(*n).ray_dir_y = game.numig.dir_y + game.numig.plane_y * (*n).camera_x;
 	(*n).map_x = game.numig.pos_x;
 	(*n).map_y = game.numig.pos_y;
 	(*n).side_dist_x = 0.0;
@@ -92,10 +92,11 @@ void	game_loop_init(t_game game, t_calc *n)
 	(*n).step_x = 0.0;
 	(*n).step_y = 0.0;
 	(*n).hit = 0;
+	(*n).side = 0;
 	
 	// init textures variables
 
 	(*n).wall_x = 0.0;
 	(*n).step = 0.0;
-	(*n).tex_pos = 0.0;
+	// (*n).tex_pos = 0.0;
 }

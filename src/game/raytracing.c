@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/18 13:57:58 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:31:18 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	game_loop(t_game game, t_data img)
 	n.x = -1;
 	n.w = game.window_width;
 	n.h = game.window_height;
+	n.se_draw = malloc(sizeof(int) * 2);
+	n.se_draw[0] = 0;
+	n.se_draw[1] = 1;
+	
 	while (++n.x < n.w)
 	{
 		game_loop_init(game, &n);
@@ -48,12 +52,13 @@ void	game_loop(t_game game, t_data img)
 					// printf("valeur largeur %d\n", game.texig.texture_width);
 					// printf("tex_x a la sortie %d\n", game.texig.tex_x);
 					// printf("tex_y a la sortie %d\n", game.texig.tex_y);
-					// printf("color a la sortie %d\n", n.color);
+					// printf("x a la sortie %d\n", n.x);
 					// printf("---------------------------------------\n");
 						// exit(0);
 		// draw(img, n.x, n.se_draw, n.color);
-		free(n.se_draw);
 	}
+	// printf("********************************************************************\n");
+	free(n.se_draw);
 }
 
 int	exit_game(void)
