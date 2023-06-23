@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 17:01:54 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:32:57 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ void	game_loop(t_game game, t_data img)
 	n.x = -1;
 	n.w = game.window_width;
 	n.h = game.window_height;
+	n.se_draw = malloc(sizeof(int) * 2); // <- je l'intialise la ca evite un boucle d'init / free.
 	draw_background(&game, img);
 	while (++n.x < n.w)
 	{
 		game_loop_init(game, &n);
 		ray_dir_calc(game, &n);
 		hit_wall(game, &n);
-		last_calcul(game, &n);
-		draw(img, n.x, n.se_draw, n.color);
-		free(n.se_draw);
+		last_calcul(&game, &n, img);
+		// draw(img, n.x, n.se_draw, n.color); <- commenté parce que je le fais dans last calcul, je te laisse checker uwu 
 	}
+	free(n.se_draw); // <- il descend hors de la boucle du coup
 	minimap(&game, img);
 }

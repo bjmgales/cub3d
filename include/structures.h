@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:46:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/19 10:57:07 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:29:44 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ typedef struct t_num
 
 typedef struct s_tex
 {
+	t_data no;
+	t_data so;
+	t_data we;
+	t_data ea;
 	int	tex_x;
 	int	tex_y;
-	int	**buffer;
-	int	*texture[8];
 	int	texture_width;
 	int	texture_height;
 }	t_tex;
@@ -155,6 +157,9 @@ typedef struct s_calc
 	int		x;
 	int		w;
 	int		h;
+	double	wall_x;
+	double	step;
+	double	tex_pos;
 }	t_calc;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/20 11:44:17 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:33:34 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	game_loop_init(t_game game, t_calc *n);
 void	ray_dir_calc(t_game game, t_calc *n);
 int		exit_game(void);
 void	hit_wall(t_game game, t_calc *n);
-void	last_calcul(t_game game, t_calc *n);
+void	last_calcul(t_game *game, t_calc *n, t_data img);
+void	set_image(t_game *game, t_data *img, char *path);
 int		color_select(int tale);
 double	delta_dist_init(double d, double r);
 double	v_abs(double value);

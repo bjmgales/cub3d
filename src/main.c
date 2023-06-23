@@ -53,6 +53,14 @@ int	main(int argc, char **argv)
 	game.window = mlx_new_window(game.mlx, game.window_width,
 			game.window_height, "cub3D");
 	init_img(&game);
+
+	game.texig.texture_width = 64;
+	game.texig.texture_height = 64;
+	set_image(&game, &game.texig.no, "./ressources/textures/NO.xpm");
+	set_image(&game, &game.texig.so, "./ressources/textures/SO.xpm");
+	set_image(&game, &game.texig.ea, "./ressources/textures/EA.xpm");
+	set_image(&game, &game.texig.we, "./ressources/textures/WE.xpm");
+
 	game_loop(game, game.imgig);
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);
 	mlx_hook(game.window, 2, 0, lock_key, &game);
