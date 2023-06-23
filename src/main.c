@@ -65,6 +65,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);
 	mlx_hook(game.window, 2, 0, lock_key, &game);
 	mlx_hook(game.window, 3, 0, unlock_key, &game);
+	mlx_hook(game.window, 17, (1L << 17), exit_game, &game);
 	mlx_loop_hook(game.mlx, key_events, &game);
 	mlx_loop(game.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:42:32 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:54:29 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:21:37 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ void	print_free_exit(char *str, t_parse **parse)
 		printf("%s", str);
 	free_struct(parse);
 	exit (0);
+}
+
+int exit_game(void)
+{
+	exit(0);
 }
