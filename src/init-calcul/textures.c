@@ -6,7 +6,11 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:00:57 by bgales            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/06/25 11:31:44 by bgales           ###   ########.fr       */
+=======
+/*   Updated: 2023/06/25 20:06:54 by bgales           ###   ########.fr       */
+>>>>>>> 8ad0ed7 (fix: leaks from texture removed + secured cross exit potential leaks)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +70,20 @@ char	*get_path(char *str)
 
 void	texture_init(t_game *game)
 {
+	char	*text;
+
 	game->texig.texture_width = 64;
 	game->texig.texture_height = 64;
-	set_image(game, &game->texig.no, get_path(game->parse->north));
-	set_image(game, &game->texig.so, get_path(game->parse->south));
-	set_image(game, &game->texig.ea, get_path(game->parse->east));
-	set_image(game, &game->texig.we, get_path(game->parse->west));
+	text = get_path(game->parse->north);
+	set_image(game, &game->texig.no, text);
+	free (text);
+	text = get_path(game->parse->south);
+	set_image(game, &game->texig.so, text);
+	free (text);
+	text = get_path(game->parse->east);
+	set_image(game, &game->texig.ea, text);
+	free (text);
+	text = get_path(game->parse->west);
+	set_image(game, &game->texig.we, text);
+	free (text);
 }

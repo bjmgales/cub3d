@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 20:57:35 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 19:59:15 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double			time_calculator(void);
 void			game_loop(t_game game, t_data img);
 void			game_loop_init(t_game game, t_calc *n);
 void			ray_dir_calc(t_game game, t_calc *n);
-int				exit_game(void);
+int				exit_game(t_game *game);
 void			hit_wall(t_game game, t_calc *n);
 void			last_calcul(t_game *game, t_calc *n, t_data img);
 void			set_image(t_game *game, t_data *img, char *path);
