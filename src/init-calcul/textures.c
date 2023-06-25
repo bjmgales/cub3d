@@ -6,11 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:00:57 by bgales            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/25 11:31:44 by bgales           ###   ########.fr       */
-=======
-/*   Updated: 2023/06/25 20:06:54 by bgales           ###   ########.fr       */
->>>>>>> 8ad0ed7 (fix: leaks from texture removed + secured cross exit potential leaks)
+/*   Updated: 2023/06/25 21:41:46 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
