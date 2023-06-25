@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:15:40 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 20:55:51 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 11:30:24 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ void	get_texture(t_parse **parse, int line)
 	if ((*parse)->ressources[line][0] == 'N' && in_set("O",
 		((*parse)->ressources[line][1])) && !(*parse)->north)
 		(*parse)->north = ft_substr((*parse)->ressources[line],
-				0, ft_strlen((*parse)->ressources[line]) - 1);
+				0, ft_strlen((*parse)->ressources[line]));
 	if ((*parse)->ressources[line][0] == 'S' && in_set("O",
 		((*parse)->ressources[line][1])) && !(*parse)->south)
 		(*parse)->south = ft_substr((*parse)->ressources[line],
-				0, ft_strlen((*parse)->ressources[line]) - 1);
+				0, ft_strlen((*parse)->ressources[line]));
 	if ((*parse)->ressources[line][0] == 'W' && in_set("E",
 		((*parse)->ressources[line][1])) && !(*parse)->west)
 		(*parse)->west = ft_substr((*parse)->ressources[line],
-				0, ft_strlen((*parse)->ressources[line]) - 1);
+				0, ft_strlen((*parse)->ressources[line]));
 	if ((*parse)->ressources[line][0] == 'E' && in_set("A",
 		((*parse)->ressources[line][1])) && !(*parse)->east)
 		(*parse)->east = ft_substr((*parse)->ressources[line],
-				0, ft_strlen((*parse)->ressources[line]) - 1);
+				0, ft_strlen((*parse)->ressources[line]));
 }
 
 void	ressource_parse(t_parse **parse)

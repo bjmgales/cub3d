@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:00:57 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 20:56:20 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 11:31:44 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*get_path(char *str)
 	i = -1;
 	while (str[++i] != '.')
 		;
-	return (ft_strtrim(&str[i], " 	"));
+	return (ft_strtrim(&str[i], " 	\n"));
 }
 
 void	texture_init(t_game *game)
