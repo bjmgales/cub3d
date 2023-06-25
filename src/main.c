@@ -48,8 +48,8 @@ int	main(int argc, char **argv)
 	init_numig(&game);
 	game.map_ig = game.parse->map;
 	game.mlx = mlx_init();
-	game.window_height = 720;
-	game.window_width = 1024;
+	game.window_height = GAME_HEIGHT;
+	game.window_width = GAME_WIDTH;
 	game.window = mlx_new_window(game.mlx, game.window_width,
 			game.window_height, "cub3D");
 	init_img(&game);
