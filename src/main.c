@@ -30,11 +30,11 @@ t_parse	*parse(char *map_path, int argc)
 
 void	init_img(t_game *game)
 {
-	(*game).imgig.img = mlx_new_image((*game).mlx,
-			(*game).window_width, (*game).window_height);
-	(*game).imgig.addr = mlx_get_data_addr((*game).imgig.img,
-			&(*game).imgig.bits_per_pixel, &(*game).imgig.line_length,
-			&(*game).imgig.endian);
+	game->imgig.img = mlx_new_image(game->mlx,
+			game->window_width, game->window_height);
+	game->imgig.addr = mlx_get_data_addr(game->imgig.img,
+			&game->imgig.bits_per_pixel, &game->imgig.line_length,
+			&game->imgig.endian);
 }
 
 int	main(int argc, char **argv)

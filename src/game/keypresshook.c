@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypresshook.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 21:43:20 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 22:04:08 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	rotate_right(t_game *game)
 	double	olddir_x;
 	double	oldplane_x;
 
-	if ((*game).keys.right)
+	if (game->keys.right)
 	{
 		olddir_x = game->numig.dir_x;
 		game->numig.dir_x = game->numig.dir_x * cos(-game->numig.rot_speed)
@@ -87,7 +87,7 @@ void	rotate_left(t_game *game)
 	double	olddir_x;
 	double	oldplane_x;
 
-	if ((*game).keys.left)
+	if (game->keys.left)
 	{
 		olddir_x = game->numig.dir_x;
 		game->numig.dir_x = game->numig.dir_x * cos(game->numig.rot_speed)

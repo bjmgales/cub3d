@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:00:57 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 21:41:46 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 22:06:22 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ unsigned int	test_texture(t_game *game, t_calc *n)
 	unsigned int	pixel;
 
 	pixel = 0;
-	if ((*n).side == 0)
+	if (n->side == 0)
 	{
-		if ((*n).step_x <= 0)
+		if (n->step_x <= 0)
 			pixel = get_data_color(&game->texig.no, game->texig.tex_x,
 					game->texig.tex_y, game->texig.no.addr);
-		if ((*n).step_x > 0)
+		if (n->step_x > 0)
 			pixel = get_data_color(&game->texig.so, game->texig.tex_x,
 					game->texig.tex_y, game->texig.so.addr);
 	}
-	if ((*n).side == 1)
+	if (n->side == 1)
 	{
-		if ((*n).step_y <= 0)
+		if (n->step_y <= 0)
 			pixel = get_data_color(&game->texig.we, game->texig.tex_x,
 					game->texig.tex_y, game->texig.we.addr);
-		if ((*n).step_y > 0)
+		if (n->step_y > 0)
 			pixel = get_data_color(&game->texig.ea, game->texig.tex_x,
 					game->texig.tex_y, game->texig.ea.addr);
 	}

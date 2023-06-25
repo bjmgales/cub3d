@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 20:15:41 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 22:04:41 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	draw_background(t_game *game, t_data img)
 
 	c_draw = -1;
 	f_draw = -1;
-	floor_rgb = create_trgb(0, (*game).parse->f_rgb[0],
-			(*game).parse->f_rgb[1], (*game).parse->f_rgb[2]);
-	ceiling_rgb = create_trgb(0, (*game).parse->c_rgb[0],
-			(*game).parse->c_rgb[1], (*game).parse->c_rgb[2]);
+	floor_rgb = create_trgb(0, game->parse->f_rgb[0],
+			(*game).parse->f_rgb[1], game->parse->f_rgb[2]);
+	ceiling_rgb = create_trgb(0, game->parse->c_rgb[0],
+			(*game).parse->c_rgb[1], game->parse->c_rgb[2]);
 	while (++f_draw < game->window_width)
 	{
 		draw(img, f_draw, (int [2]){game->window_height / 2,
