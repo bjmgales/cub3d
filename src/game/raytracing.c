@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:04:25 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 15:31:18 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 20:29:50 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,27 @@ double	time_calculator(void)
 	return ((start.tv_sec * 1000) + (start.tv_usec / 1000));
 }
 
+void	draw_background(t_game *game, t_data img)
+{
+	int	floor_rgb;
+	int	ceiling_rgb;
+	int	f_draw;
+	int	c_draw;
+
+	c_draw = -1;
+	f_draw = -1;
+	floor_rgb = create_trgb(0, (*game).parse->f_rgb[0],
+			(*game).parse->f_rgb[1], (*game).parse->f_rgb[2]);
+	ceiling_rgb = create_trgb(0, (*game).parse->c_rgb[0],
+			(*game).parse->c_rgb[1], (*game).parse->c_rgb[2]);
+	while (++f_draw < game->window_width)
+	{
+		draw(img, f_draw, (int [2]){game->window_height / 2,
+			game->window_height - 1}, floor_rgb);
+		draw(img, ++c_draw, (int [2]){0, game->window_height / 2}, ceiling_rgb);
+	}
+}
+
 void	game_loop(t_game game, t_data img)
 {
 	t_calc	n;
@@ -39,29 +60,14 @@ void	game_loop(t_game game, t_data img)
 	n.w = game.window_width;
 	n.h = game.window_height;
 	n.se_draw = malloc(sizeof(int) * 2);
-	n.se_draw[0] = 0;
-	n.se_draw[1] = 1;
-	
+	draw_background(&game, img);
 	while (++n.x < n.w)
 	{
 		game_loop_init(game, &n);
 		ray_dir_calc(game, &n);
 		hit_wall(game, &n);
 		last_calcul(&game, &n, img);
-		
-					// printf("valeur largeur %d\n", game.texig.texture_width);
-					// printf("tex_x a la sortie %d\n", game.texig.tex_x);
-					// printf("tex_y a la sortie %d\n", game.texig.tex_y);
-					// printf("x a la sortie %d\n", n.x);
-					// printf("---------------------------------------\n");
-						// exit(0);
-		// draw(img, n.x, n.se_draw, n.color);
 	}
-	// printf("********************************************************************\n");
 	free(n.se_draw);
-}
-
-int	exit_game(void)
-{
-	exit(0);
+	minimap(&game, img);
 }

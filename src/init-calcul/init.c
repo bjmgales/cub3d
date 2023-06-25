@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:43 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 13:39:13 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/23 20:00:36 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	init_keys(t_game *game)
 	(*game).keys.left = 0;
 	(*game).keys.right = 0;
 }
+
 void	init_numig(t_game *game)
 {
 	(*game).numig.time = 0;
@@ -75,7 +76,6 @@ void	init_numig(t_game *game)
 	(*game).numig.pos_x = (*game).parse->player_x + 0.5;
 	(*game).numig.pos_y = (*game).parse->player_y + 0.5;
 	init_keys(game);
-
 }
 
 void	game_loop_init(t_game game, t_calc *n)
@@ -93,10 +93,6 @@ void	game_loop_init(t_game game, t_calc *n)
 	(*n).step_y = 0.0;
 	(*n).hit = 0;
 	(*n).side = 0;
-	
-	// init textures variables
-
 	(*n).wall_x = 0.0;
 	(*n).step = 0.0;
-	// (*n).tex_pos = 0.0;
 }

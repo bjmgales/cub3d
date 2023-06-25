@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:42:32 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/08 15:54:29 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 13:58:27 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,11 @@ void	print_free_exit(char *str, t_parse **parse)
 	if (str)
 		printf("%s", str);
 	free_struct(parse);
+	// system("leaks cub3D");
 	exit (0);
+}
+
+int	exit_game(void)
+{
+	exit(0);
 }

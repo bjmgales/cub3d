@@ -6,17 +6,14 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/23 15:24:06 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/25 21:16:58 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-
 void	up_down(t_game *game, int type)
 {
-
 	char	**map_ig;
 
 	map_ig = game->map_ig;
@@ -39,8 +36,6 @@ void	up_down(t_game *game, int type)
 			game->numig.pos_x -= game->numig.dir_x * game->numig.move_speed;
 	}
 }
-
-///////////////////////////
 
 void	right_left(t_game *game, int type)
 {
@@ -115,19 +110,13 @@ int	key_press_hook(void *params)
 	game->numig.old_time = game->numig.time;
 	game->numig.time = time_calculator() - game->numig.start;
 	game->numig.frame_time = (game->numig.time - game->numig.old_time) / 1000.0;
-	game->numig.move_speed = 0.07;
-	game->numig.rot_speed = 0.05;
+	game->numig.move_speed = 0.12;
+	game->numig.rot_speed = 0.06;
 	mlx_clear_window(game->mlx, game->window);
-	game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
-	game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig
-			.bits_per_pixel, &game->imgig.line_length, &game->imgig.endian);
-	game->minimap.img = mlx_new_image(game->mlx,  200, 200);
-	game->minimap.addr = mlx_get_data_addr(game->minimap.img,
-			&game->minimap.bits_per_pixel, &game->minimap.line_length,
-			&game->minimap.endian);
+	// game->imgig.img = mlx_new_image(game->mlx, 1024, 720);
+	// game->imgig.addr = mlx_get_data_addr(game->imgig.img, &game->imgig
+	// 		.bits_per_pixel, &game->imgig.line_length, &game->imgig.endian);
 	game_loop(*game, game->imgig);
-	print_map(game, game->minimap);
 	mlx_put_image_to_window(game->mlx, game->window, game->imgig.img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->minimap.img, 0, 0);
 	return (0);
 }
