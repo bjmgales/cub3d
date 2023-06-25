@@ -37,7 +37,7 @@ void	init_img(t_game *game)
 			&(*game).imgig.endian);
 }
 
-void test(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
@@ -55,7 +55,6 @@ void test(int argc, char **argv)
 	init_img(&game);
 	system("leaks cub3D");
 	texture_init(&game);
-
 	game_loop(game, game.imgig);
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);
 	mlx_hook(game.window, 2, 0, lock_key, &game);
@@ -63,9 +62,4 @@ void test(int argc, char **argv)
 	mlx_hook(game.window, 17, (1L << 17), exit_game, &game);
 	mlx_loop_hook(game.mlx, key_events, &game);
 	mlx_loop(game.mlx);
-}
-
-int	main(int argc, char **argv)
-{
-	test(argc, argv);
 }

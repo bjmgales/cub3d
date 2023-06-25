@@ -6,7 +6,7 @@
 /*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:04:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/16 15:04:46 by bgales           ###   ########.fr       */
+/*   Updated: 2023/06/25 21:02:04 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,22 @@ int	unlock_key(int key, t_game *game)
 
 int	key_events(t_game *game)
 {
-	if (game->keys.up)
-		up_down(game, 'U');
-	else if (game->keys.down)
-		up_down(game, 'D');
-	if (game->keys.a)
-		right_left(game, 'R');
-	else if (game->keys.d)
-		right_left(game, 'L');
-	if (game->keys.right)
-		rotate_right(game);
-	else if (game->keys.left)
-		rotate_left(game);
-	key_press_hook(game);
+	if (game->keys.up || game->keys.down || game->keys.a
+		|| game->keys.d || game->keys.left || game->keys.right)
+	{
+		if (game->keys.up)
+			up_down(game, 'U');
+		else if (game->keys.down)
+			up_down(game, 'D');
+		if (game->keys.a)
+			right_left(game, 'R');
+		else if (game->keys.d)
+			right_left(game, 'L');
+		if (game->keys.right)
+			rotate_right(game);
+		else if (game->keys.left)
+			rotate_left(game);
+		key_press_hook(game);
+	}
 	return (0);
 }
