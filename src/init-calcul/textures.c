@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:00:57 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 22:06:22 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/25 22:27:07 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	texture_init(t_game *game)
 {
 	char	*text;
 
-	game->texig.texture_width = 64;
-	game->texig.texture_height = 64;
+	game->texig.texture_width = TEXTURE_WIDTH;
+	game->texig.texture_height = TEXTURE_HEIGHT;
 	text = get_path(game->parse->north);
 	set_image(game, &game->texig.no, text);
 	free (text);

@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 18:19:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 21:55:44 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/25 22:26:53 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define PI 3.1415926535
 # define GAME_WIDTH 480
 # define GAME_HEIGHT 200
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 // *****************************************************************************
 // Personal library
