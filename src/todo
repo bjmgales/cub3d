@@ -1,6 +1,0 @@
-//ca lag de zinzin sur la derniere version main, a cause de la nouvelle mimimap maybe ? <- fix en augmentant la vélocité ptdr ca n'as aucun sens
-orientation player a modifier (new x y)
-ressource parse a decommenter et mettre en place
-// collison mur sur le coté a gérer <- gérer j'attends ton avis
-le plafond / sol c'est chargé un moment, puis plus jamais, a checker
-norme
