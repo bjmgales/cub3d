@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:43 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/27 15:42:20 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:00:42 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,41 @@
 
 void	init_cam_eastwest(t_game *game)
 {
-	if (game->parse->map[game->parse->player_y]
-		[game->parse->player_x] == 'W')
+	if ((*game).parse->map[(*game).parse->player_y]
+		[(*game).parse->player_x] == 'W')
 	{
-		game->numig.dir_x = -1;
-		game->numig.dir_y = 0;
-		game->numig.plane_x = 0;
-		game->numig.plane_y = 0.66;
+		(*game).numig.dir_x = -1;
+		(*game).numig.dir_y = 0;
+		(*game).numig.plane_x = 0;
+		(*game).numig.plane_y = 0.66;
 	}
-	else if (game->parse->map[game->parse->player_y]
-		[game->parse->player_x] == 'E')
+	else if ((*game).parse->map[(*game).parse->player_y]
+		[(*game).parse->player_x] == 'E')
 	{
-		game->numig.dir_x = 1;
-		game->numig.dir_y = 0;
-		game->numig.plane_x = 0;
-		game->numig.plane_y = -0.66;
+		(*game).numig.dir_x = 1;
+		(*game).numig.dir_y = 0;
+		(*game).numig.plane_x = 0;
+		(*game).numig.plane_y = -0.66;
 	}
 }
 
 void	init_camera_dir(t_game *game)
 {
-	if (game->parse->map[game->parse->player_y]
-		[game->parse->player_x] == 'N')
+	if ((*game).parse->map[(*game).parse->player_y]
+		[(*game).parse->player_x] == 'N')
 	{
-		game->numig.dir_x = -1;
-		game->numig.dir_y = 0;
-		game->numig.plane_x = 0;
-		game->numig.plane_y = 0.66;
+		(*game).numig.dir_x = 0;
+		(*game).numig.dir_y = -1;
+		(*game).numig.plane_x = -0.66;
+		(*game).numig.plane_y = 0;
 	}
-	else if (game->parse->map[game->parse->player_y]
-		[game->parse->player_x] == 'S')
+	else if ((*game).parse->map[(*game).parse->player_y]
+		[(*game).parse->player_x] == 'S')
 	{
-		game->numig.dir_x = 0;
-		game->numig.dir_y = 1;
-		game->numig.plane_x = 0.66;
-		game->numig.plane_y = 0;
+		(*game).numig.dir_x = 0;
+		(*game).numig.dir_y = 1;
+		(*game).numig.plane_x = 0.66;
+		(*game).numig.plane_y = 0;
 	}
 	else
 		init_cam_eastwest(game);
