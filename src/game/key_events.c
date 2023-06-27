@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:04:22 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 22:03:47 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/27 15:39:51 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	lock_key(int key, t_game *game)
 		game->keys.d = 1;
 	else if (key == A_KEY)
 		game->keys.a = 1;
-	else if (key == 124)
-		game->keys.right = 1;
 	else if (key == 123)
+		game->keys.right = 1;
+	else if (key == 124)
 		game->keys.left = 1;
 	return (0);
 }
@@ -41,9 +41,9 @@ int	unlock_key(int key, t_game *game)
 		game->keys.a = 0;
 	else if (key == D_KEY)
 		game->keys.d = 0;
-	else if (key == 123)
-		game->keys.left = 0;
 	else if (key == 124)
+		game->keys.left = 0;
+	else if (key == 123)
 		game->keys.right = 0;
 	return (0);
 }

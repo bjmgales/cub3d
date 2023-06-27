@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:12:35 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/25 22:04:08 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/27 15:39:34 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	right_left(t_game *game, int type)
 	char	**map_ig;
 
 	map_ig = game->map_ig;
-	if (type == 'R')
+	if (type == 'L')
 	{
 		if (map_ig[(int)(game->numig.pos_y + game->numig.dir_x
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
@@ -51,7 +51,7 @@ void	right_left(t_game *game, int type)
 			- game->numig.dir_y * game->numig.move_speed)] == '0')
 			game->numig.pos_x -= game->numig.dir_y * game->numig.move_speed;
 	}
-	else if (type == 'L')
+	else if (type == 'R')
 	{
 		if (map_ig[(int)(game->numig.pos_y - game->numig.dir_x
 				* game->numig.move_speed)][(int)game->numig.pos_x] == '0')
