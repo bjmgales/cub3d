@@ -1,16 +1,9 @@
-F 		50, 170  , 100
-
-
-SO			 ./ressources/textures/SO.xpm
-
-
-                  NO          ./ressources/textures/NO.xpm
-
-
-EA	 		 		 	 	 	     	  	 	 	  	 	 	 	 	  ./ressources/textures/EA.xpm
-C	 		 	0, 170, 200
-
-				   WE				        ./ressources/textures/WE.xpm
+EA ./ressources/textures/classic/EA.xpm
+F 225,30,0
+SO ./ressources/textures/classic/SO.xpm
+C 220,100,0
+WE ./ressources/textures/classic/WE.xpm
+NO ressources/textures/classic/NO.xpm
 
 
 1111111111111111111111111111111
