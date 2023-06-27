@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: bgales <bgales@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:37:44 by bgales            #+#    #+#             */
-/*   Updated: 2023/06/27 16:52:32 by ctardy           ###   ########.fr       */
+/*   Updated: 2023/06/27 18:26:52 by bgales           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	last_calc_norm(t_game *game, t_calc *n, t_data img, double step)
 	if ((n->side == 0 && n->ray_dir_x > 0)
 		|| (n->side == 1 && n->ray_dir_y < 0))
 		game->texig.tex_x = game->texig.texture_width - game->texig.tex_x - 1;
-		
 	if (n->se_draw[0] < 0)
 	{
 		tex_pos += step * -n->se_draw[0];
