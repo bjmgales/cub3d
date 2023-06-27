@@ -37,18 +37,18 @@ void	init_img(t_game *game)
 			&game->imgig.endian);
 }
 
-void init_game(t_game *game)
+void	init_game(t_game *game)
 {
 	game->parse->map[game->parse->player_y][game->parse->player_x] = '0';
 	game->map_ig = game->parse->map;
 	game->mlx = mlx_init();
-	game->window_height = GAME_HEIGHT;
+	game->window_height = GAME_HEIGHT - 100;
 	game->window_width = GAME_WIDTH;
 	game->window = mlx_new_window(game->mlx, game->window_width,
 			game->window_height, "cub3D");
 }
 
-void init_all(t_game *game, int argc, char **argv)
+void	init_all(t_game *game, int argc, char **argv)
 {
 	ft_memset(game, 0, sizeof(t_game));
 	game->parse = parse(argv[1], argc);
@@ -62,7 +62,7 @@ void init_all(t_game *game, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	
+
 	init_all (&game, argc, argv);
 	game_loop(game, game.imgig);
 	mlx_put_image_to_window(game.mlx, game.window, game.imgig.img, 0, 0);

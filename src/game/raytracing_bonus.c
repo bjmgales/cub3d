@@ -70,4 +70,5 @@ void	game_loop(t_game game, t_data img)
 		last_calcul(&game, &n, img);
 	}
 	free(n.se_draw);
+	minimap(&game, img);
 }
