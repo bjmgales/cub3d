@@ -6,7 +6,7 @@
 #    By: bgales <bgales@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 12:55:07 by bgales            #+#    #+#              #
-#    Updated: 2023/06/27 14:01:48 by bgales           ###   ########.fr        #
+#    Updated: 2023/06/27 23:22:34 by bgales           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ HFLAGS := -I $(HDRS_PATH) -I $(LIBFT_PATH)/$(HDRS_PATH)
 # Libft
 FTFLAGS := -L./$(LIBFT_PATH)
 
-LFLAGS := $(FTFLAGS) -lft -lmlx -framework OpenGL -framework AppKit
+LFLAGS := $(FTFLAGS) -lft -L./lib/minilibx/ -lmlx -framework OpenGL -framework AppKit
 
 # ********************************* N O R M E *********************************
 
@@ -124,5 +124,5 @@ libft_fclean:
 
 libft_re:
 					@$(MAKE) -C ./$(LIBFT_PATH) re
-					
+
 .PHONY: all bonus clean fclean re norme
